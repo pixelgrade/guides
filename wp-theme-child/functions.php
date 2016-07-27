@@ -40,9 +40,11 @@ add_action( 'after_setup_theme', 'guides_child_theme_setup' );
 
 function guides_child_enqueue_styles() {
 	$theme = wp_get_theme();
-
+	// use the parent version for cachebusting since the child theme doesn't have a version number
+	$parent = $theme->parent();
+	
 	// First we need to load the template style since it won't be loaded by the parent
-	wp_enqueue_style( 'guides-main-style', get_template_directory_uri() . '/style.css', array( 'wp-mediaelement' ), $theme->get( 'Version' ) );
+	wp_enqueue_style( 'guides-main-style', get_template_directory_uri() . '/style.css', array(), $parent->get( 'Version' ) );
 
 	// Here we are adding the child style.css while still retaining
 	// all of the parents assets (style.css, JS files, etc)
@@ -97,7 +99,7 @@ function guides_child_overwrite_files() {
 	// 2. The "style.css" file
 	//
 	// First, remove the parent style files
-	// see the parent's function.php -> the hive_scripts_styles() function for details like resources names
+	// see the parent's function.php -> the guides_scripts_styles() function for details like resources names
 
 		wp_dequeue_style( 'guides-main-style' );
 
