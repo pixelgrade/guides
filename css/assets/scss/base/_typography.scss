@@ -1,0 +1,36 @@
+$font-size: 	16px 	!default;
+$line-height: 	1.6 	!default;
+
+html {
+	font-size: percentage($font-size/16px);
+	line-height: $line-height;
+	color: rgba(0,0,0,0.5);
+}
+
+h1, h2, h3, h4, h5, h6,
+ul, ol, dl,
+p,
+table, pre, code {
+	margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: $line-height * 1rem;
+	color: black;
+	margin-top: 2rem
+}
+
+ul, ol {
+	list-style: inside;
+}
+
+ul ul,
+ol ol {
+	margin-left: 2rem;
+	margin-bottom: 0;
+}
+
+ol ol {
+    list-style-type: lower-alpha;
+}
+

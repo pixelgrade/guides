@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Claws</h1>
+<p>Stands for CSS Laws - Our CSS Guidelines</p>
+
+<h2>Table of Contents</h2>
+<nav>
+	<ol>
+		<li><a href="#">Introduction</a></li>
+		<li><a href="#">Syntax and Formatting</a></li>
+		<li><a href="#">File organization</a></li>
+		<li><a href="#">Commenting</a></li>
+		<li><a href="#">Naming Things</a></li>
+		<li>
+			<a href="#">The BEM methodology</a>
+			<ol>
+				<li><a href="#">Taking it a step further: BEMIT</a></li>
+				<li><a href="#">JavaScript Hooks</a></li>
+				<li><a href="#">CSS Selectors</a></li>
+			</ol>
+		</li>
+		<li>
+			<a href="#">Selector intent / Scoping</a>
+			<ol>
+				<li><a href="#">Specificity</a></li>
+				<li><a href="#">!important</a></li>
+				<li><a href="#">Hacking specificity</a></li>
+				<li><a href="#">Z-index @todo</a></li>
+			</ol>
+		</li>
+		<li><a href="#">SCSS Considerations</a></li>
+		<li><a href="#">Architectural principles</a></li>
+	</ol>
+</nav>
+
+
+Any break of these laws should be sufficient enough to turn down a pull request!
+
+<h2>Introduction</h2>
+
+<p>CSS is a very powerful but dangerous weapon. On one hand, it allows you to build extraordinary things, but on the other hand it can have an awful impact on your app’s scalability and maintainability if not handled carefully.</p>
+<p>There are a lot of bad habits that can damage your stylesheets. Things like overwriting specific rules multiple times, using “magic numbers” or overqualified selectors are known as “code smells” and are signs of unhealthy CSS.</p>
+<p>The fact that CSS is a highly opinionated language and that it applies on a global scope, makes it hard for developers to collaborate and keep a scalable and maintainable codebase without a set a guides and rules.</p>
+
+<h2>Syntax and Formatting @todo review</h2>
+
+<ul>
+	<li>Use soft-tabs with a four space indent. Spaces are the only way to guarantee code renders the same in any person’s environment.</li>
+	<li>Include one space before the opening brace of declaration blocks for legibility.</li>
+	<li>Include one space after : in property declarations.</li>
+	<li>Place closing braces of declaration blocks on a new line.</li>
+	<li>Put line breaks between rulesets.</li>
+	<li>When grouping selectors, keep individual selectors to a single line.</li>
+	<li>Place closing braces of declaration blocks on a new line.</li>
+	<li>Each declaration should appear on its own line for more accurate error reporting.</li>
+	<li>End all declarations with a semicolon. The last declaration's semicolon is optional, but your code is more error prone without it.</li>
+	<li>Comma-separated property values should include a space after each comma (e.g., box-shadow).</li>
+	<li>Don't include spaces after commas within rgb(), rgba(), hsl(), hsla(), or rect() values. This helps differentiate multiple color values (comma, no space) from multiple property values (comma with space).</li>
+	<li>Don't prefix property values or color parameters with a leading zero (e.g., .5 instead of 0.5 and -.5px instead of -0.5px).</li>
+	<li>Lowercase all hex values(e.g., #fff) within the same declaration(e.g. box-shadow). Lowercase letters are much easier to discern when scanning a document as they tend to have more unique shapes.</li>
+	<li>Quote attribute values in selectors, e.g., input[type="text"]. They’re only optional in some cases, and it’s a good practice for consistency.</li>
+	<li>Avoid specifying units for zero values, e.g., margin: 0; instead of margin: 0px;.</li>
+	<li>Use hex color codes(e.g. #000) unless using rgba() in raw CSS (SCSS’ rgba() function is overloaded to accept hex colors as a param, e.g., rgba(#000, .5)).</li>
+	<li>Use // for comment blocks in SCSS(instead of /* */).</li>
+	<li>Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. (e.g. write margin: 0 auto; only where you must set all values)</li>
+</ul>
+
+<h3>Single declarations</h3>
+<p>In instances where a rule set includes only one declaration, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines. (e.g. .element { display: block; })</p>
+<p>The key factor here is error detection—e.g., a CSS validator stating you have a syntax error on Line 183. With a single declaration, there's no missing it. With multiple declarations, separate lines is a must for your sanity.</p>
+
+<h3>Declaration order</h3>
+<p>We group by type within that scope we toggle between arbitrary order and order by line length. Types are ordered by their importance, from loose to more specific properties.</p>
+
+<ul>
+	<li>Positioning - position, top, right, bottom, left, z-index</li>
+	<li>Display, flex properties, and box model</li>
+	<li>Border and other its properties(style, width, color)</li>
+	<li>Background and color</li>
+	<li>Typographic</li>
+	<li>Other</li>
+</ul>
+
+<p>@todo we should have a reference to a .csscomb.json file and explain the reasoning behind it</p>
+<a href="https://github.com/pixelgrade/components/blob/master/.csscomb.json">https://github.com/pixelgrade/components/blob/master/.csscomb.json</a>
+
+<h3>Shorthand notation</h3>
+<p>@todo maybe use the precss postcss plugin that allows you to write things like margin: * auto; to avoid accidentally overwriting unnecessary values.</p>
+<p>Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. Common overused shorthand properties include:</p>
+
+<ul>
+	<li>padding</li>
+	<li>margin</li>
+	<li>font</li>
+	<li>background</li>
+	<li>border</li>
+	<li>border-radius</li>
+</ul>
+
+Often times we don't need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.
+<h2>File organization</h2>
+<h3>Folder Structure</h3>
+<ul>
+	<li>Settings — default, settings and variables.</li>
+	<li>Tools — functions and mixins.</li>
+	<li>Generic — generic, high-level styling, like resets, etc.</li>
+	<li>Objects — objects and abstractions.</li>
+	<li>Components — our designed UI elements.</li>
+	<li>Trumps — overrides and helper/utility classes.</li>
+	<li>Vendor</li>
+	<li>Shame — the place for prototyping, quick fixes and overrides</li>
+</ul>
+
+<pre>
+-- settings
+	-- _settings.scss
+-- tools
+	-- _mixins.scss
+-- generic
+-- objects
+-- components
+-- trumps
+-- vendor
+_shame.scss
+_main.scss
+style.scss
+</pre>
+
+<p>_main.scss should have a table of contents. The table of contents will have CSS comments /* */ so that it will be output in the CSS file. All .scss files from all folders will be included in _main.scss.</p>
+
+<h3>Example: _main.scss</h3>
+
+<pre><code>/**
+ * Table of Contents
+ *
+ * 1.0 - Reset
+ * 2.0 - Base Styles
+ * 3.0 - Abstractions
+ *   3.1 - Grid
+ *   3.2 - Media
+ * 4.0 - Components
+ *   4.1 - Header
+ *   4.2 - Navigation
+ *   4.3 - Footer
+ *   4.4 - Card
+ *   4.5 - Button
+ *   4.6 - Small Links
+ *   4.7 - Intro
+ *   4.8 - Dropcap
+ *   4.9 - Search Form
+ *   4.10 - Comments Area
+ *   4.11 - Tags
+ *   4.12 - Post Navigation Links
+ *   4.13 - Widgets
+ *   4.14 - Infinite Scroll
+ * 5.0 - Page Specific Styles
+ *   5.1 - Singular
+ * 6.0 - Overwrites
+ */
+
+// Settings
+@import "settings/default";
+
+// Tools
+@import "tools/clearfix";
+@import "tools/helpers";
+@import "tools/queries";
+@import "tools/easings";
+@import "tools/font-face";
+@import "tools/wp-offset";
+
+
+
+/**
+ * 1.0 - Reset
+ */
+@import "generic/reset";
+@import "generic/box-sizing";
+
+
+
+/**
+ * 2.0 - Base Styles
+ */
+@import "base/typography";
+@import "base/blockquote";
+@import "base/pre";
+@import "base/tables";
+@import "base/titles";
+@import "base/form-elements";
+@import "base/wp-align";
+
+
+
+/**
+ * 3.0 - Abstractions
+ *   3.1 - Grid
+ */
+@import "objects/grid";
+
+/**
+ *   3.2 - Media
+ */
+@import "objects/media";
+
+(...)</code></pre>
+
+
+<p>main.scss will be included in style.scss. style.scss holds css comments /* */ with pieces of information(e.g. WordPress theme version) that will appear as comments in the generated style.css file.</p>
+
+<h2>Commenting</h2>
+<p>Double slash “ // ” comments should be used for comment blocks in SCSS(instead of /* */). A notable exception would be in _main.scss described above.</p>
+
+<h2>CSS Selectors</h2>
+The absence of scope in CSS is one of the main reasons code gets bad. Nesting is not an option since it brings unwanted specificity to your selectors. This leaves us with the only option of using a naming convention for the class names used.
+<h3>Naming stuff</h3>
+<h4>BEM</h4>
+<a href="http://getbem.com/naming/">http://getbem.com/naming/</a>
+
+<h4>BEMIT</h4>
+<a href="http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/</a>
+
+<p>An ID / class should be as short as possible but as long as necessary</p>
+
+<h3>The Namespaces</h3>
+<p>In no particular order, here are the individual namespaces and a brief description. We’ll look at each in more detail in a moment, but the following list should acquaint you with the kinds of thing we’re hoping to achieve.</p>
+<h4>Objects: o-</h4>
+<p>Signify that the element which it is applied to is an Object. It can be used for layout purposes or abstracting visual patterns. These elements’ properties shouldn’t be modified by other elements or based on context. Modifying the object itself should be avoided.</p>
+<h4>Components: c-</h4>
+<p>Components are well-defined pieces of UI and their properties are mostly for decoration purposes. The scope to which changes to these elements’ styling would apply is easily to detect and explain.</p>
+<h4>Utility: u-</h4>
+<p>Utilities classes are in no way attached to any piece of ui or code. Each class has a specific purpose and they come from methodologies like Tachyons / Basscss / Atomic CSS. They are more suited when developing for an environment where you have full control over the markup but that’s not the case for WordPress.</p>
+<h4>State: is-, has-</h4>
+<p>State classes define a scope which each elements are styled in a certain way cause of the current state of the application. They are usually temporary or optional</p>
+<h4>JavaSript Hooks: js-</h4>
+<p>These classes don’t have any stylistic purposes and are used to bind JavaScript to them for a certain behavior.</p>
+
+<h2>SCSS Considerations</h2>
+Avoid unnecessary nesting
+<h3>Mixins and @extend</h3>
+Mixins are powerful tools which can be used to leverage your work and also handy shortcuts. The most valuable use of mixins is generating CSS. It is very helpful for having DRY code and changes in different modules come with less effort. We should at most times try to keep the declaration and usage of mixins inside the same files so we don’t create any unneeded dependencies. The same applies for @extend which must not be used inside components! Components should be independent chunks of code with high portability. Also using @extend proves to be less performant than using mixins (probably even repeating code) when the source is gzipped. (see http://csswizardry.com/2016/02/mixins-better-for-performance/)
+<h3>Specificity</h3>
+<h3>!important</h3>
+<p>!important should be avoided at all costs. There are certain cases where !important can or should be used. For example utility classes and / or when you want to overwrite some inline CSS which for some reason it cannot be removed. In this case there should be a CSS comment above the line where !important is used to explain the reason it was used.</p>
+
+<h3>Organization</h3>
+<li>Organize sections of code by component.</li>
+<li>Develop a consistent commenting hierarchy.</li>
+<li>Use consistent white space to your advantage when separating sections of code for scanning larger documents.</li>
+<li>When using multiple CSS files, break them down by component instead of page. Pages can be rearranged and components moved.</li>
+
+<h2>Architectural principles</h2>
+
+<h4>Tot felul de referinte:</h4>
+
+<ul>
+	<li><a href="http://cssguidelin.es/">http://cssguidelin.es/</a></li>
+	<li><a href="http://codeguide.co/">http://codeguide.co/</a></li>
+	<li><a href="https://github.com/airbnb/css">https://github.com/airbnb/css</a></li>
+	<li><a href="http://primercss.io/guidelines/">http://primercss.io/guidelines/</a></li>
+	<li><a href="http://csswizardry.com/2012/11/code-smells-in-css/">http://csswizardry.com/2012/11/code-smells-in-css/</a></li>
+	<li><a href="http://csswizardry.com/2013/05/scope-in-css/">http://csswizardry.com/2013/05/scope-in-css/</a></li>
+	<li><a href="http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/</a></li>
+</ul>
+
+</body>
+</html>
