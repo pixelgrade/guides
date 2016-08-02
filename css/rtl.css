@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6, ul, ol, dl, p, table, pre, code { margin-bottom: 1rem; }
 
 h1, h2, h3, h4, h5, h6 { font-size: 1.6rem; color: black; margin-top: 2rem; }
 
-ul, ol { list-style: inside; }
+ul, ol { list-style-position: inside; }
 
 ul ul, ol ol { margin-right: 2rem; margin-bottom: 0; }
 
