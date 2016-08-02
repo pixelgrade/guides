@@ -58,28 +58,99 @@
 	<h2 id="chapter-syntax-formatting">Syntax and Formatting @todo review</h2>
 
 	<ul>
-		<li>Use soft-tabs with a four space indent. Spaces are the only way to guarantee code renders the same in any person’s environment.</li>
-		<li>Include one space before the opening brace of declaration blocks for legibility.</li>
-		<li>Include one space after : in property declarations.</li>
-		<li>Place closing braces of declaration blocks on a new line.</li>
-		<li>Put line breaks between rulesets.</li>
-		<li>When grouping selectors, keep individual selectors to a single line.</li>
-		<li>Place closing braces of declaration blocks on a new line.</li>
+		<li>Use soft-tabs with a <strong>four</strong> space indent. Spaces are the only way to guarantee code renders the same in any person’s environment.
+			<pre><code>.element {
+<span class="highlight">&nbsp;&nbsp;&nbsp;&nbsp;</span>display: block;
+}</code></pre>
+		</li>
+		<li>Include one space before the opening brace of declaration blocks for legibility.
+			<pre><code>.selector<span class="highlight"> </span>{ }</code></pre>
+		</li>
+		<li>Include one space after : in property declarations.
+			<pre><code>.selector { display:<span class="highlight"> </span>block; }</code></pre></li>
+		<li>Place closing braces of declaration blocks on a new line.
+			<pre><code>.selector {
+    display: block;
+    height: auto;
+<span class="highlight">}</span></code></pre>
+		</li>
+		<li>Put line breaks between rulesets.
+			<pre><code>.selector-1 {
+    display: block;
+    height: auto;
+}
+<span class="highlight"> </span>
+.selector-2 {
+    display: inherit;
+}</code></pre>
+		</li>
+		<li>When grouping selectors, keep individual selectors to a single line.
+			<pre><code>.selector {
+    display: block;
+    height: auto;
+
+    color: #FFFFFF;
+    background-color: #000000;
+}</code></pre>
+		</li>
 		<li>Each declaration should appear on its own line for more accurate error reporting.</li>
-		<li>End all declarations with a semicolon. The last declaration's semicolon is optional, but your code is more error prone without it.</li>
-		<li>Comma-separated property values should include a space after each comma (e.g., box-shadow).</li>
-		<li>Don't include spaces after commas within rgb(), rgba(), hsl(), hsla(), or rect() values. This helps differentiate multiple color values (comma, no space) from multiple property values (comma with space).</li>
-		<li>Don't prefix property values or color parameters with a leading zero (e.g., .5 instead of 0.5 and -.5px instead of -0.5px).</li>
-		<li>Lowercase all hex values(e.g., #fff) within the same declaration(e.g. box-shadow). Lowercase letters are much easier to discern when scanning a document as they tend to have more unique shapes.</li>
-		<li>Quote attribute values in selectors, e.g., input[type="text"]. They’re only optional in some cases, and it’s a good practice for consistency.</li>
-		<li>Avoid specifying units for zero values, e.g., margin: 0; instead of margin: 0px;.</li>
-		<li>Use hex color codes(e.g. #000) unless using rgba() in raw CSS (SCSS’ rgba() function is overloaded to accept hex colors as a param, e.g., rgba(#000, .5)).</li>
-		<li>Use // for comment blocks in SCSS(instead of /* */).</li>
-		<li>Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. (e.g. write margin: 0 auto; only where you must set all values)</li>
+		<li>End all declarations with a semicolon. The last declaration's semicolon is optional, but your code is more error prone without it.
+			<pre><code>.selector {
+    display: block<span class="highlight">;</span>
+    height: auto<span class="highlight">;</span>
+
+    color: #FFFFFF<span class="highlight">;</span>
+    background-color: #000000<span class="highlight">;</span>
+}</code></pre>
+		</li>
+		<li>Comma-separated property values should include a space after each comma (e.g., box-shadow).
+			<pre><code>.selector {
+    box-shadow: inset 5px 5px 10px #000000,<span class="highlight"> </span>inset -5px -5px 10px #454545,<span class="highlight"> </span>inset -10px -5px 12px #334332;
+}</code></pre>
+		</li>
+		<li>Don't include spaces after commas within rgb(), rgba(), hsl(), hsla(), or rect() values. This helps differentiate multiple color values (comma, no space) from multiple property values (comma with space).
+			<pre><code>.selector {
+    <span class="strike">background-color: rgb(0, 0, 0);</span>
+    background-color: rgb(0<span class="highlight">,</span>0<span class="highlight">,</span>0);
+}</code></pre>
+		</li>
+		<li>Don't prefix property values or color parameters with a leading zero (e.g., .5 instead of 0.5 and -.5px instead of -0.5px).
+			<pre><code>.selector {
+    <span class="strike">opacity: 0.5;</span>
+    opacity: <span class="highlight">.5</span>;
+}</code></pre>
+		</li>
+		<li>Lowercase all HEX values within the same declaration. Lowercase letters are much easier to discern when scanning a document as they tend to have more unique shapes.
+			<pre><code>.selector {
+    <span class="strike">box-shadow: 10px #FAFAFA, -5px #ccc, 12px #DDD;</span>
+    box-shadow: 10px <span class="highlight">#fafafa</span>, -5px <span class="highlight">#ccc</span>, 12px <span class="highlight">#ddd</span>;
+}</code></pre>
+		</li>
+		<li>Quote attribute values in selectors. They’re only optional in some cases, and it’s a good practice for consistency.
+			<pre><code><span class="strike">input[type=text]</span> { ... }
+<span class="highlight">input[type="text"]</span> { ... }</code></pre>
+		</li>
+		<li>Avoid specifying units for zero values.
+			<pre><code><span class="strike">.selector { margin: 0px; }</span>
+.selector { margin: <span class="highlight">0</span>; }</code></pre>
+		</li>
+		<li>Use HEX color codes unless using rgba() in raw CSS (SCSS’ rgba() function is overloaded to accept hex colors as a parameter).
+		<pre><code>// SCSS
+.selector {
+    <span class="strike">background-color: rgba(0,0,0, .5);</span>
+    background-color: rgba(<span class="highlight">#000000</span>, .5);
+}
+
+/* CSS */
+.selector {
+    background-color: rgba(0,0,0, .5);
+}</code></pre>
+		</li>
 	</ul>
 
 	<h3>Single declarations</h3>
-	<p>In instances where a rule set includes only one declaration, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines. (e.g. .element { display: block; })</p>
+	<p>In instances where a rule set includes only one declaration, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines.
+	<pre><code>.selector { display: block; }</code></pre></p>
 	<p>The key factor here is error detection—e.g., a CSS validator stating you have a syntax error on Line 183. With a single declaration, there's no missing it. With multiple declarations, separate lines is a must for your sanity.</p>
 
 	<h3>Declaration order</h3>
@@ -88,11 +159,41 @@
 	<ul>
 		<li>Positioning - position, top, right, bottom, left, z-index</li>
 		<li>Display, flex properties, and box model</li>
-		<li>Border and other its properties(style, width, color)</li>
+		<li>Border and other of its properties(style, width, color)</li>
 		<li>Background and color</li>
 		<li>Typographic</li>
 		<li>Other</li>
 	</ul>
+
+	<pre><code>.element {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    display: flex;
+    flex: 1 1 auto;
+    height: auto;
+    width: 100%;
+
+    border: 1px solid #fff;
+    border-radius: 5px;
+
+    color: #cecece;
+    background-color: #000;
+
+    font-family: sans-serif;
+    font-size: 100%;
+    font-style: regular;
+    text-align: center;
+    text-transform: uppercase;
+
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}</code></pre>
 
 	<p>@todo we should have a reference to a .csscomb.json file and explain the reasoning behind it</p>
 	<a href="https://github.com/pixelgrade/components/blob/master/.csscomb.json">https://github.com/pixelgrade/components/blob/master/.csscomb.json</a>
@@ -100,7 +201,6 @@
 	<h3>Shorthand notation</h3>
 	<p>@todo maybe use the precss postcss plugin that allows you to write things like margin: * auto; to avoid accidentally overwriting unnecessary values.</p>
 	<p>Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. Common overused shorthand properties include:</p>
-
 	<ul>
 		<li>padding</li>
 		<li>margin</li>
@@ -109,6 +209,12 @@
 		<li>border</li>
 		<li>border-radius</li>
 	</ul>
+	<code><pre>.selector {
+    <span class="highlight">margin-left: auto;</span>
+    <span class="highlight">margin-right: auto;</span>
+    // instead of
+    margin: 0 auto;
+}</pre></code>
 
 	Often times we don't need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.
 </section><!-- .chapter--syntax-formatting -->
@@ -128,23 +234,23 @@
 	</ul>
 
 	<pre>
-		-- settings
-			-- _settings.scss
-		-- tools
-			-- _mixins.scss
-		-- generic
-		-- objects
-		-- components
-		-- trumps
-		-- vendor
-		_shame.scss
-		_main.scss
-		style.scss
+-- settings
+	_settings.scss
+-- tools
+	_mixins.scss
+-- generic
+-- objects
+-- components
+-- trumps
+-- vendor
+_shame.scss
+_main.scss
+style.scss
 	</pre>
 
-	<p>_main.scss should have a table of contents. The table of contents will have CSS comments /* */ so that it will be output in the CSS file. All .scss files from all folders will be included in _main.scss.</p>
+	<p><span class="pre--inline">_main.scss</span> should have a table of contents. The table of contents will have CSS comments so that it will be output in the CSS file. All SCSS files from all folders will be included in <span class="pre--inline">_main.scss</span>.</p>
 
-	<h3>Example: _main.scss</h3>
+	<h4>Example: _main.scss</h4>
 
 	<pre><code>/**
  * Table of Contents
@@ -222,13 +328,43 @@
 (...)</code></pre>
 
 
-	<p>main.scss will be included in style.scss. style.scss holds css comments /* */ with pieces of information(e.g. WordPress theme version) that will appear as comments in the generated style.css file.</p>
+	<p><span class="pre--inline">_main.scss</span> will be included in <span class="pre--inline">style.scss</span> that contains holds CSS comments with pieces of information(e.g. WordPress theme version) that will appear as comments in the generated <span class="pre--inline">style.css</span> file.</p>
+
+	<h4>Example: style.scss</h4>
+	<pre><code>
+@charset "UTF-8";
+/*
+Theme Name: Hive
+Theme URI: http://pixelgrade.com/demos/hive/
+Author: PixelGrade
+Author URI: http://pixelgrade.com
+Description: An effortless tool for publishers of all kind, cherished for its clean masonry-style layout (...)
+Version: 1.2.5-wpcom
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: hive_txtd
+Domain Path: /languages/
+Tags: blog, bright, clean, custom-menu, editor-style, elegant, fashion, featured-images, geometric (...)
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
+*/
+
+@import "main";
+	</code></pre>
 
 </section><!-- .chapter--file-organization -->
 
 <section class="chapter  chapter--commenting">
 	<h2 id="chapter-commenting">Commenting</h2>
-	<p>Double slash “ // ” comments should be used for comment blocks in SCSS(instead of /* */). A notable exception would be in _main.scss described above.</p>
+	<p>Double slash <span class="pre--inline">//</span> comments should be used for comment blocks in SCSS(instead of <span class="pre--inline">/* */</span>). A notable exception would be in <span class="pre--inline">_main.scss</span> described above.
+	<pre><code>/* Comment in SCSS - valid but not encouraged */
+<span class="highlight">// Comment in SCSS - valid and encouraged </span>
+
+/* Comment in CSS */
+</code></pre></p>
 </section><!-- .chapter--commenting -->
 
 <section class="chapter  chapter--selectors">

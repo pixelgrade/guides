@@ -142,6 +142,14 @@ ul ul, ol ol { margin-right: 2rem; margin-bottom: 0; }
 
 ol ol { list-style-type: lower-alpha; }
 
+code { white-space: pre-wrap; }
+
+.highlight { background-color: rgba(99, 163, 92, 0.3); }
+
+.strike { text-decoration: line-through; }
+
+.pre--inline { font-family: monospace, monospace; background-color: #f5f5f5; }
+
 body { font-size: 18px; }
 
 h1 { font-size: 60px; }
