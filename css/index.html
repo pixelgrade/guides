@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Claws: CSS Laws - Our CSS Guidelines</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,19 +24,19 @@
 				<a href="#chapter-selectors">CSS Selectors</a>
 				<ol>
 					<li><a href="#subchapter-bem">The BEM methodology</a></li>
-					<li><a href="#subchamter-bemit">Taking it a step further: BEMIT</a></li>
+					<li><a href="#subchapter-bemit">Taking it a step further: BEMIT</a></li>
+					<li><a href="#subchapter-namespaces">The Namespaces</a></li>
 					<li><a href="#subchapter-javascript-hooks">JavaScript Hooks</a></li>
 				</ol>
 			</li>
-			<li>
-				<a href="#chapter">Selector intent / Scoping</a>
-				<ol>
-					<li><a href="#">Specificity</a></li>
-					<li><a href="#">!important</a></li>
-					<li><a href="#">Hacking specificity</a></li>
-					<li><a href="#">Z-index @todo</a></li>
-				</ol>
-			</li>
+			<!--<li>-->
+				<!--<a href="#chapter">Selector intent / Scoping</a>-->
+				<!--<ol>-->
+					<!--<li><a href="#">Specificity</a></li>-->
+					<!--<li><a href="#">!important</a></li>-->
+					<!--<li><a href="#">Hacking specificity</a></li>-->
+				<!--</ol>-->
+			<!--</li>-->
 			<li><a href="#chapter-scss-considerations">SCSS Considerations</a></li>
 			<li><a href="#chapter-architectural-principles">Architectural principles</a></li>
 		</ol>
@@ -55,7 +55,7 @@
 </section><!-- .chapter--introduction -->
 
 <section class="chapter  chapter--syntax-formatting">
-	<h2 id="chapter-syntax-formatting">Syntax and Formatting @todo review</h2>
+	<h2 id="chapter-syntax-formatting">Syntax and Formatting</h2>
 
 	<ul>
 		<li>Use soft-tabs with a <strong>four</strong> space indent. Spaces are the only way to guarantee code renders the same in any person’s environment.
@@ -373,12 +373,12 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 	<h4 id="subchapter-bem">BEM</h4>
 	<a href="http://getbem.com/naming/">http://getbem.com/naming/</a>
 
-	<h4 id="subchamter-bemit">BEMIT</h4>
+	<h4 id="subchapter-bemit">BEMIT</h4>
 	<a href="http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/</a>
 
 	<p>An ID / class should be as short as possible but as long as necessary</p>
 
-	<h3>The Namespaces</h3>
+	<h3 id="subchapter-namespaces">The Namespaces</h3>
 	<p>In no particular order, here are the individual namespaces and a brief description. We’ll look at each in more detail in a moment, but the following list should acquaint you with the kinds of thing we’re hoping to achieve.</p>
 	<h4>Objects: o-</h4>
 	<p>Signify that the element which it is applied to is an Object. It can be used for layout purposes or abstracting visual patterns. These elements’ properties shouldn’t be modified by other elements or based on context. Modifying the object itself should be avoided.</p>
@@ -394,12 +394,45 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 
 <section class="chapter  chapter--scss-considerations">
 	<h2 id="chapter-scss-considerations">SCSS Considerations</h2>
-	Avoid unnecessary nesting
+
 	<h3>Mixins and @extend</h3>
 	Mixins are powerful tools which can be used to leverage your work and also handy shortcuts. The most valuable use of mixins is generating CSS. It is very helpful for having DRY code and changes in different modules come with less effort. We should at most times try to keep the declaration and usage of mixins inside the same files so we don’t create any unneeded dependencies. The same applies for @extend which must not be used inside components! Components should be independent chunks of code with high portability. Also using @extend proves to be less performant than using mixins (probably even repeating code) when the source is gzipped. (see http://csswizardry.com/2016/02/mixins-better-for-performance/)
-	<h3>Specificity</h3>
-	<h3>!important</h3>
-	<p>!important should be avoided at all costs. There are certain cases where !important can or should be used. For example utility classes and / or when you want to overwrite some inline CSS which for some reason it cannot be removed. In this case there should be a CSS comment above the line where !important is used to explain the reason it was used.</p>
+	<h3>Specificity<small><a href="http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/">(ref)</a></small></h3>
+	<ul>
+		<li>Never use IDs in CSS, ever. They have no advantage over classes (anything you can do with an ID, you can do with a class), they cannot be reused, and their specificity is way, way too high. Even an infinite number of chained classes will not trump the specificity of one ID.</li>
+		<li>Do not nest selectors unnecessarily. If <span class="pre--inline">.header-nav {}</span> will work, never use <span class="pre--inline">.header .header-nav {}</span>; to do so will literally double the specificity of the selector without any benefit.</li>
+		<li>Do not qualify selectors unless you have a compelling reason to do so. If <span class="pre--inline">.nav {}</span> will work, do not use <span class="pre--inline">ul.nav {}</span>; to do so would not only limit the places you can use the <span class="pre--inline">.nav</span> class, but it also increases the specificity of the selector, again, with no real gain.</li>
+		<li>Make heavy use of classes because they are the ideal selector: low specificity (or rather, all classes have the same specificity, so you have a level playing field), great portability, and high reusability.</li>
+	</ul>
+
+	<h4>Selecting IDs</h4>
+	<pre><code>&lt;div id="widget"&gt;
+	...
+&lt;/div&gt;</code></pre>
+	<p>Naturally, given that we can’t edit this HTML to use a class instead of (or alongside) the ID, we’d opt for something like this:</p>
+	<pre><code>#widget {
+    ...
+}</code></pre>
+	<p>Now we have an ID in our CSS, and that is not a good precedent to set. Instead, we should do something like this:</p>
+	<pre><code>[id="widget"] {
+    ...
+}</code></pre>
+	<p>This is an attribute selector. This is not selecting on an ID per se, but on an element with an attribute of id which also has a certain value.</p>
+	<p>The beauty of this selector is that it has the exact same specificity as a class, so we’re selecting a chunk of the DOM based on an ID, but never actually increasing our specificity beyond that of our classes that we’re making liberal use of elsewhere.</p>
+	<p>Just because we know a way of using IDs without introducing their heightened specificity, it does not mean we should go back to using IDs in our CSS; they still have the problem of not being reusable. Only use this technique when you have no other option, and you cannot replace an ID in some markup with a class.</p>
+
+	<h3><span class="pre--inline">!important</span></h3>
+	<p><span class="pre--inline">!important</span> should be avoided at all costs. There are certain cases where <span class="pre--inline">!important</span> can or should be used. For example utility classes and / or when you want to overwrite some inline CSS which for some reason it cannot be removed. In this case there should be a CSS comment above the line where <span class="pre--inline">!important</span> is used to explain the reason it was used.</p>
+
+	<h3>Safely increasing specificity</h3>
+	<p>You can chain a selector with itself to increase its specificity.</p>
+	<p>That is to say:</p>
+	<pre><code>.btn.btn {
+}</code></pre>
+	<p>…will select based on only one class (.btn) but with double the specificity. We can take this as far as we need to:</p>
+	<pre><code>.btn.btn.btn.btn {
+}</code></pre>
+	<p>…but hopefully we’ll never get that far.</p>
 
 	<h3>Organization</h3>
 	<li>Organize sections of code by component.</li>
@@ -409,7 +442,17 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 </section><!-- .chapter--scss-considerations -->
 
 <section class="chapter  chapter--architectural-principles">
-	<h2 id="chapter-architectural-principles">Architectural principles</h2>
+	<h2 id="chapter-architectural-principles">Architectural principles @todo improve</h2>
+	Atomic design is methodology for creating design systems. There are five distinct levels in atomic design:
+	<ol>
+		<li>Atoms</li>
+		<li>Molecules</li>
+		<li>Organisms</li>
+		<li>Templates</li>
+		<li>Pages</li>
+	</ol>
+
+	<a href="http://bradfrost.com/blog/post/atomic-web-design/">http://bradfrost.com/blog/post/atomic-web-design/</a>
 </section><!-- .chapter--architectural-principles -->
 
 

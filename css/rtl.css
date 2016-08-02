@@ -178,6 +178,8 @@ h4 { font-size: 24px; }
   h3 { font-size: 22px; }
   h4 { font-size: 19px; } }
 
+.chapter { margin-bottom: 50px; }
+
 body { padding: 1em; max-width: 50em; margin-right: auto; margin-left: auto; }
 
 nav a { text-decoration: none; color: inherit; }
