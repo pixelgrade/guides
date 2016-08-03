@@ -42,8 +42,7 @@
 		</ol>
 	</nav>
 
-
-	Any break of these laws should be sufficient enough to turn down a pull request!
+	<p>Any break of these laws should be sufficient enough to turn down a pull request!</p>
 </section><!-- .table-of-contents -->
 
 <section class="chapter  chapter--introduction">
@@ -52,30 +51,30 @@
 	<p>CSS is a very powerful but dangerous weapon. On one hand, it allows you to build extraordinary things, but on the other hand it can have an awful impact on your app’s scalability and maintainability if not handled carefully.</p>
 	<p>There are a lot of bad habits that can damage your stylesheets. Things like overwriting specific rules multiple times, using “magic numbers” or overqualified selectors are known as “code smells” and are signs of unhealthy CSS.</p>
 	<p>The fact that CSS is a highly opinionated language and that it applies on a global scope, makes it hard for developers to collaborate and keep a scalable and maintainable codebase without a set a guides and rules.</p>
-</section><!-- .chapter--introduction -->
+</section><!-- .chapter-introduction -->
 
 <section class="chapter  chapter--syntax-formatting">
 	<h2 id="chapter-syntax-formatting">Syntax and Formatting</h2>
 
 	<ul>
 		<li>Use soft-tabs with a <strong>four</strong> space indent. Spaces are the only way to guarantee code renders the same in any person’s environment.
-<pre><code class="language-css">.element {
+<pre><code class="language-">.element {
 <span class="highlight">&nbsp;&nbsp;&nbsp;&nbsp;</span>display: block;
 }</code></pre>
 		</li>
 		<li>Include one space before the opening brace of declaration blocks for legibility.
-			<pre><code class="language-css">.selector<span class="highlight"> </span>{ }</code></pre>
+			<pre><code class="language-">.selector<span class="highlight"> </span>{ }</code></pre>
 		</li>
 		<li>Include one space after : in property declarations.
-			<pre><code class="language-css">.selector { display:<span class="highlight"> </span>block; }</code></pre></li>
+			<pre><code class="language-">.selector { display:<span class="highlight"> </span>block; }</code></pre></li>
 		<li>Place closing braces of declaration blocks on a new line.
-			<pre><code class="language-css">.selector {
+			<pre><code class="language-">.selector {
     display: block;
     height: auto;
 <span class="highlight">}</span></code></pre>
 		</li>
 		<li>Put line breaks between rulesets.
-			<pre><code class="language-css">.selector-1 {
+			<pre><code class="language-">.selector-1 {
     display: block;
     height: auto;
 }
@@ -85,7 +84,9 @@
 }</code></pre>
 		</li>
 		<li>When grouping selectors, keep individual selectors to a single line.
-			<pre><code class="language-css">.selector {
+			<pre><code class="language-">.selector,
+.another-selector,
+.and-another {
     display: block;
     height: auto;
 
@@ -95,7 +96,7 @@
 		</li>
 		<li>Each declaration should appear on its own line for more accurate error reporting.</li>
 		<li>End all declarations with a semicolon. The last declaration's semicolon is optional, but your code is more error prone without it.
-			<pre><code class="language-css">.selector {
+			<pre><code class="language-">.selector {
     display: block<span class="highlight">;</span>
     height: auto<span class="highlight">;</span>
 
@@ -104,38 +105,38 @@
 }</code></pre>
 		</li>
 		<li>Comma-separated property values should include a space after each comma (e.g., box-shadow).
-			<pre><code class="language-css">.selector {
+			<pre><code class="language-">.selector {
     box-shadow: inset 5px 5px 10px #000000,<span class="highlight"> </span>inset -5px -5px 10px #454545,<span class="highlight"> </span>inset -10px -5px 12px #334332;
 }</code></pre>
 		</li>
 		<li>Don't include spaces after commas within rgb(), rgba(), hsl(), hsla(), or rect() values. This helps differentiate multiple color values (comma, no space) from multiple property values (comma with space).
-			<pre><code class="language-css">.selector {
+			<pre><code class="language-">.selector {
     <span class="strike">background-color: rgb(0, 0, 0);</span>
     background-color: rgb(0<span class="highlight">,</span>0<span class="highlight">,</span>0);
 }</code></pre>
 		</li>
 		<li>Don't prefix property values or color parameters with a leading zero (e.g., .5 instead of 0.5 and -.5px instead of -0.5px).
-			<pre><code class="language-css">.selector {
+			<pre><code class="language-">.selector {
     <span class="strike">opacity: 0.5;</span>
     opacity: <span class="highlight">.5</span>;
 }</code></pre>
 		</li>
 		<li>Lowercase all HEX values within the same declaration. Lowercase letters are much easier to discern when scanning a document as they tend to have more unique shapes.
-			<pre><code class="language-css">.selector {
+			<pre><code class="language-">.selector {
     <span class="strike">box-shadow: 10px #FAFAFA, -5px #ccc, 12px #DDD;</span>
     box-shadow: 10px <span class="highlight">#fafafa</span>, -5px <span class="highlight">#ccc</span>, 12px <span class="highlight">#ddd</span>;
 }</code></pre>
 		</li>
 		<li>Quote attribute values in selectors. They’re only optional in some cases, and it’s a good practice for consistency.
-			<pre><code class="language-css"><span class="strike">input[type=text]</span> { ... }
+			<pre><code class="language-"><span class="strike">input[type=text]</span> { ... }
 <span class="highlight">input[type="text"]</span> { ... }</code></pre>
 		</li>
 		<li>Avoid specifying units for zero values.
-			<pre><code class="language-css"><span class="strike">.selector { margin: 0px; }</span>
+			<pre><code class="language-"><span class="strike">.selector { margin: 0px; }</span>
 .selector { margin: <span class="highlight">0</span>; }</code></pre>
 		</li>
 		<li>Use HEX color codes unless using rgba() in raw CSS (SCSS’ rgba() function is overloaded to accept hex colors as a parameter).
-		<pre><code class="language-css">// SCSS
+		<pre><code class="language-">// SCSS
 .selector {
     <span class="strike">background-color: rgba(0,0,0, .5);</span>
     background-color: rgba(<span class="highlight">#000000</span>, .5);
