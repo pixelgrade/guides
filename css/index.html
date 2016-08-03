@@ -47,7 +47,7 @@ Any break of these laws should be sufficient enough to turn down a pull request!
 
 <p>CSS is a very powerful but dangerous weapon. On one hand, it allows you to build extraordinary things, but on the other hand it can have an awful impact on your app’s scalability and maintainability if not handled carefully.</p>
 <p>There are a lot of bad habits that can damage your stylesheets. Things like overwriting specific rules multiple times, using “magic numbers” or overqualified selectors are known as “code smells” and are signs of unhealthy CSS.</p>
-<p>The fact that CSS is a highly opinionated language and that it applies on a global scope, makes it hard for developers to collaborate and keep a scalable and maintainable codebase without a set a guides and rules.</p>
+<p>The fact that CSS is a highly opinionated language and that it applies on a global scope, makes it hard for developers to collaborate and keep a scalable and maintainable codebase without a set of guides and rules.</p>
 
 <h2>Syntax and Formatting @todo review</h2>
 
@@ -104,40 +104,48 @@ Any break of these laws should be sufficient enough to turn down a pull request!
 	<li>border-radius</li>
 </ul>
 
-Often times we don't need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.
-<h2>File organization</h2>
-<h3>Folder Structure</h3>
+<p>Often times we don't need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.</p>
+
+<h2>Architecture</h2>
+
+<p>The <strong>Inverted Triangle CSS</strong> Methodology is a scalable and maintainable CSS architecture introduced by Harry Roberts which gives you a set of rules to help you deal with CSS specifics like <strong>global namespace, cascade and selector specificity</strong>.</p>
+
+<p>One of the key principles of ITCSS is that it separates your CSS codebase to several sections (called layers), which take form of the inverted triangle:</p>
 <ul>
-	<li>Settings — default, settings and variables.</li>
-	<li>Tools — functions and mixins.</li>
-	<li>Generic — generic, high-level styling, like resets, etc.</li>
-	<li>Objects — objects and abstractions.</li>
-	<li>Components — our designed UI elements.</li>
-	<li>Trumps — overrides and helper/utility classes.</li>
-	<li>Vendor</li>
-	<li>Shame — the place for prototyping, quick fixes and overrides</li>
+	<li><strong>Settings</strong> &mdash; global settings and variables declarations.</li>
+	<li><strong>Tools</strong> &mdash; globally used mixins and functions.</li>
+	<li><strong>Generic</strong> &mdash; reset and / or normalize styles.</li>
+	<li><strong>Elements</strong> &mdash; styling for bare HTML elements</li>
+	<li><strong>Objects</strong> &mdash; class-based selectors which define undecorated design patterns</li>
+	<li><strong>Components</strong> &mdash; specific UI components</li>
+	<li><strong>Trumps</strong> &mdash; utilities and helper classes with ability to override anything</li>
+	<li><strong>Shame</strong> &mdash; the place for prototyping, quick fixes and overrides</li>
 </ul>
 
-<pre>
--- settings
-	-- _settings.scss
--- tools
-	-- _mixins.scss
--- generic
--- objects
--- components
--- trumps
--- vendor
-_shame.scss
-_main.scss
-style.scss
+<h3>Folder Structure</h3>
+
+<pre class="language-css">
+|-- base
+|-- components
+|-- generic
+|-- tools
+    |-- _mixins.scss
+|-- objects
+|-- trumps
+|-- vendor
+|-- _main.scss
+|-- _settings.scss
+|-- _shame.scss
+|-- style.scss
 </pre>
 
-<p>_main.scss should have a table of contents. The table of contents will have CSS comments /* */ so that it will be output in the CSS file. All .scss files from all folders will be included in _main.scss.</p>
+<p>Given the <strong>WordPress</strong> environment in which we do our work, most times we will include in our project third-party plugins with their own CSS. These files should reside in the <code class="language-css">vendor</code> folder and the place in the Inverted Triangle would theoretically be the Components layer.</p>
+
+<p><code class="language-css">_main.scss</code> should have a table of contents. The table of contents will have CSS comments <code class="language-css">/* */</code> so that it will be output in the CSS file. All .scss files from all folders will be included in _main.scss.</p>
 
 <h3>Example: _main.scss</h3>
 
-<pre><code>/**
+<pre><code class="language-css">/**
  * Table of Contents
  *
  * 1.0 - Reset
@@ -219,15 +227,12 @@ style.scss
 <p>Double slash “ // ” comments should be used for comment blocks in SCSS(instead of /* */). A notable exception would be in _main.scss described above.</p>
 
 <h2>CSS Selectors</h2>
-The absence of scope in CSS is one of the main reasons code gets bad. Nesting is not an option since it brings unwanted specificity to your selectors. This leaves us with the only option of using a naming convention for the class names used.
+<p>The absence of scope in CSS is one of the main reasons code gets bad. Nesting is not an option since it brings unwanted specificity to your selectors. This leaves us with the only option of using a naming convention for the class names used.</p>
+
 <h3>Naming stuff</h3>
-<h4>BEM</h4>
-<a href="http://getbem.com/naming/">http://getbem.com/naming/</a>
 
-<h4>BEMIT</h4>
-<a href="http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/</a>
-
-<p>An ID / class should be as short as possible but as long as necessary</p>
+<p>The first rule to have in mind when naming your selectors is that an ID or classname should be as short as possible but as long as necessary.</p>
+<p>People tend to use poor CSS selectors because of the urge the style an element . This</p>
 
 <h3>The Namespaces</h3>
 <p>In no particular order, here are the individual namespaces and a brief description. We’ll look at each in more detail in a moment, but the following list should acquaint you with the kinds of thing we’re hoping to achieve.</p>
@@ -270,5 +275,6 @@ Mixins are powerful tools which can be used to leverage your work and also handy
 	<li><a href="http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/</a></li>
 </ul>
 
+<script src="assets/js/prism.min.js" async></script>
 </body>
 </html>

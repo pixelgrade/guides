@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6, ul, ol, dl, p, table, pre, code { margin-bottom: 1rem; }
 
 h1, h2, h3, h4, h5, h6 { font-size: 1.6rem; color: black; margin-top: 2rem; }
 
-ul, ol { list-style: inside; }
+ul, ol { list-style-position: inside; }
 
 ul ul, ol ol { margin-left: 2rem; margin-bottom: 0; }
 
@@ -152,26 +152,71 @@ h3 { font-size: 28px; }
 
 h4 { font-size: 24px; }
 
+pre { font-size: 16px; }
+
 @media only screen and (max-width: 1200px) { body { font-size: 17px; }
   h1 { font-size: 50px; }
   h2 { font-size: 32px; }
   h3 { font-size: 26px; }
-  h4 { font-size: 22px; } }
+  h4 { font-size: 22px; }
+  pre { font-size: 15px; } }
 
 @media only screen and (max-width: 760px) { body { font-size: 16px; }
   h1 { font-size: 43px; }
   h2 { font-size: 29px; }
   h3 { font-size: 24px; }
-  h4 { font-size: 21px; } }
+  h4 { font-size: 21px; }
+  pre { font-size: 14px; } }
 
 @media only screen and (max-width: 560px) { body { font-size: 15px; }
   h1 { font-size: 37px; }
   h2 { font-size: 27px; }
   h3 { font-size: 22px; }
-  h4 { font-size: 19px; } }
+  h4 { font-size: 19px; }
+  pre { font-size: 13px; } }
+
+/* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript */
+/** prism.js default theme for JavaScript, CSS and HTML Based on dabblet (http://dabblet.com) @author Lea Verou */
+code[class*="language-"], pre[class*="language-"] { color: black; background: none; text-shadow: 0 1px white; font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: inherit; -moz-tab-size: 4; -o-tab-size: 4; tab-size: 4; -webkit-hyphens: none; -moz-hyphens: none; -ms-hyphens: none; hyphens: none; }
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection, code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection { text-shadow: none; background: #b3d4fc; }
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection, code[class*="language-"]::selection, code[class*="language-"] ::selection { text-shadow: none; background: #b3d4fc; }
+
+@media print { code[class*="language-"], pre[class*="language-"] { text-shadow: none; } }
+
+/* Code blocks */
+pre[class*="language-"] { padding: 1em; margin: .5em 0; overflow: auto; }
+
+:not(pre) > code[class*="language-"], pre[class*="language-"] { background: #f5f2f0; }
+
+/* Inline code */
+:not(pre) > code[class*="language-"] { padding: .1em; border-radius: .3em; white-space: normal; }
+
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: slategray; }
+
+.token.punctuation { color: #999; }
+
+.namespace { opacity: .7; }
+
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted { color: #905; }
+
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted { color: #690; }
+
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string { color: #a67f59; background: rgba(255, 255, 255, 0.5); }
+
+.token.atrule, .token.attr-value, .token.keyword { color: #07a; }
+
+.token.function { color: #DD4A68; }
+
+.token.regex, .token.important, .token.variable { color: #e90; }
+
+.token.important, .token.bold { font-weight: bold; }
+
+.token.italic { font-style: italic; }
+
+.token.entity { cursor: help; }
 
 body { padding: 1em; max-width: 50em; margin-left: auto; margin-right: auto; }
 
 nav a { text-decoration: none; color: inherit; }
-
-code { display: block; padding: 1.5em; border: 1px solid #eee; background: linear-gradient(rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.01) 50%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.03)); background-size: 3em 3em; line-height: 1.5; }

@@ -6,6 +6,8 @@
 @import "base/typography";
 
 @import "tools/typeline";
+@import "vendor/prism";
+
 
 body {
 	padding: 1em;
@@ -19,13 +21,4 @@ nav {
 		text-decoration: none;
 		color: inherit;
 	}
-}
-
-code {
-	display: block;
-	padding: 1.5em;
-	border: 1px solid #eee;
-	background: linear-gradient(rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.01) 50%, rgba(0,0,0,0.03) 50%, rgba(0,0,0,0.03));
-	background-size: 3em 3em;
-	line-height: 1.5;
 }
