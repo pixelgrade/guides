@@ -10,25 +10,26 @@ These are the rules to follow while developing a new WordPress theme.
 
 ## The roots of our structure
 
-We follow the [_S structure](https://github.com/automattic/_s) since it is a simple and popular framework. This means easy to use and understand for every WordPress community member.
+We follow the [_S structure](https://github.com/automattic/_s) since it is a simple and popular framework. It is easy to use and understand for every WordPress community member.
 
 ## WordPress Coding Standards
 
-Since we are working with WordPress we respect the environment, concepts and [coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php)
+Since we are working with WordPress we respect the environment, concepts and [coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php).
 
-Aside from the rules above we also need to check:
+Aside the rules from Codex we also need to check:
 
-1. Every string must be output in an escaped way with functions like `esc_html__` or `esc_html_e`
-* For these [gettext](http://php.net/gettext) functions always use the same string textdomain which is set [here](#todo) and use only strings(no variables or constants)
+1. Every string must be output in an escaped way with [gettext](http://php.net/gettext) functions like `esc_html__` or `esc_html_e`
+* For these gettext functions always use the same string textdomain which is set [here](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L25) and use only strings (no variables or constants).
 * Never add HTML code inside the functions above, if you need to compose an HTML block with strings inside use `sprintf`.
 * Also note that strings added to `sprintf` are XSS safe, and they can be output simply with `__` or `_e` functions.
 
-2. Standards imposed by the [Theme Check Plugin](https://wordpress.org/plugins/theme-check)
-3. Always localize JavaScript strings or parameters needed.
+2. Always check what the [Theme Check Plugin](https://wordpress.org/plugins/theme-check) says.
+3. Always localize JavaScript strings or parameters needed (here is an [example](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L159-L179)).
 
 ## A Child Theme perspective
-* Every theme should have a child theme repo-example following this [structure](http://pixelgrade.github.io/guides/child)
-* For child themes to succeed we need to allow them control, so whenever we declare a function we check it with the `function_exists` function, in case it does exists it means it was created by a child theme
+* Every theme should have a child theme repository as an example following this [structure](http://pixelgrade.github.io/guides/child).
+* For child themes to succeed we need to allow them control, so whenever we declare a function we check it with the `function_exists` function, in case it does exists it means it was created by a child theme.
+* Try to break templates as much as you can in order to be easier for child themes to [overwrite templates](http://pixelgrade.github.io/guides/child#template-overwriting).
 
 ## Plugins Integrations
 
