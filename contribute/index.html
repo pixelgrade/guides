@@ -37,39 +37,46 @@ Also when you merge the branch you can automatically close the issue
 ### Let's define the battle zones
 
 **Question:** If I want to contribute, which is the best way to do it?
+
+* **The quick way:** In case you need to apply a quick fix or some small patch you can simply patch it directly to the main <a href='#main_branch'>branch</a>
+
+* **The proper way** If you want to add a new big feature or a considerable rewrite, you should definitely think about creating a new <a href='#branches'>branch</a>
+
+### Commit well!
+
+Every time we add a commit we should think that it will be public and logged and other people might want to understand what your commit does. So you need to be explicit about it.
+
+The first rule is to split the commit in 3 parts: A subject, A body and Metadata
+
+#### The Subject
+
+* It is capitalized
+* It is less than 50 chars
+* It ends without a dot
+* Must start with [imperative](http://chris.beams.io/posts/git-commit/#imperative) mood since you command what that patch will do when you apply it
+
+Example: `Remove deprecated methods from functions.php`
+
+#### The Body
+
+The body is the place where you can explain what the commit does.
+
+#### Commit Metadata
+
+All the references should capitalized and placed last(like `Close #131`). It is less important for another teammate to read who it will refer than what it does.
+
+### Optional templates
+
+Every repo can also contain a [readme template for issues or pull requests](https://github.com/blog/2111-issue-and-pull-request-templates)
+
+This template should be clear about what are the requirements and options when we create an issue or a PR.
+
+### About the Tools
+
+There are some arguments around the web about how to do a git commit and Chris Beams [recommends](http://chris.beams.io/posts/git-commit/#tips) to leave any IDE behind and try to use a primitive
+bash / terminal, this way you can understand better how git works.
+
+**At PixelGrade we leave this to the contributor will** but you have been warned about the struggle.
+
 " | markdownify
 }}
-
-<p></p>
-
-<p><strong>The quick way:</strong> In case you need to apply a quick fix or some small patch you can simply patch it directly to the main <a href="#main_branch">branch</a></p>
-<p><strong>The proper way</strong> If you want to add a new big feature or a considerable rewrite, you should definitely think about creating a new <a href="#branches">branch</a></p>
-
-<h3>Commit well!</h3>
-
-<p>Every time we add a commit we should think that it will be public and logged and other people might want to understand what your commit does. So you need to be explicit about it.</p>
-<p>The first rule is to split the commit in 3 parts: A subject, A body and Metadata</p>
-<h4>The Subject</h4>
-
-<ul>
-	<li>It is capitalized</li>
-	<li>It is less than 50 chars</li>
-	<li>It ends without a dot</li>
-	<li>Must start with <a href="http://chris.beams.io/posts/git-commit/#imperative">imperative</a> mood since you command what that patch will do when you apply it</li>
-</ul>
-
-<p>Example: </p>
-<pre>Remove deprecated methods from functions.php</pre>
-
-<h4>The Body</h4>
-
-<p>The body is the place where you can explain what the commit does</p>
-
-<h4>Commit Metadata</h4>
-<p>All the references should capitalized and placed last(like <em>Close #131</em>). It is less important for another teammate to read who it will refer than what it does </p>
-
-<h3>About the Tools</h3>
-
-<p>There are some arguments around the web about how to do a git commit and Chris Beams <a href="http://chris.beams.io/posts/git-commit/#tips">recommends</a> to leave any IDE behind and try to use a primitive
-	bash / terminal, this way you can understand better how git works </p>
-<strong>At PixelGrade we leave this to the contributor will</strong> but you have been warned about the struggle.
