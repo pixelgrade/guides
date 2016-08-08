@@ -1,9 +1,17 @@
----
-permalink: /style
-layout: default
-title: Claws
-tagline: Stands for CSS Laws - Our CSS Guidelines
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Claws: CSS Laws - Our CSS Guidelines</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+	<h1>Claws</h1>
+	<p>Stands for CSS Laws - Our CSS Guidelines</p>
+</header>
+
 <section class="table-of-contents">
 	<h2>Table of Contents</h2>
 	<nav>
@@ -21,12 +29,12 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
 			<li><a href="#chapter-specificity">Dealing with Specificity</a></li>
 			<li><a href="#chapter-conclusion">Closing Remarks</a></li>
 			<!--<li>-->
-				<!--<a href="#chapter">Selector intent / Scoping</a>-->
-				<!--<ol>-->
-					<!--<li><a href="#">Specificity</a></li>-->
-					<!--<li><a href="#">!important</a></li>-->
-					<!--<li><a href="#">Hacking specificity</a></li>-->
-				<!--</ol>-->
+			<!--<a href="#chapter">Selector intent / Scoping</a>-->
+			<!--<ol>-->
+			<!--<li><a href="#">Specificity</a></li>-->
+			<!--<li><a href="#">!important</a></li>-->
+			<!--<li><a href="#">Hacking specificity</a></li>-->
+			<!--</ol>-->
 			<!--</li>-->
 		</ol>
 	</nav>
@@ -47,7 +55,7 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
 
 	<ul>
 		<li>Use soft-tabs with a <strong>four</strong> space indent. Spaces are the only way to guarantee code renders the same in any person’s environment.
-<pre><code class="language-">.element {
+			<pre><code class="language-">.element {
 <span class="highlight">&nbsp;&nbsp;&nbsp;&nbsp;</span>display: block;
 }</code></pre>
 		</li>
@@ -125,7 +133,7 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
 .selector { margin: <span class="highlight">0</span>; }</code></pre>
 		</li>
 		<li>Use HEX color codes unless using rgba() in raw CSS (SCSS’ rgba() function is overloaded to accept hex colors as a parameter).
-		<pre><code class="language-">// SCSS
+			<pre><code class="language-">// SCSS
 .selector {
     <span class="strike">background-color: rgba(0,0,0, .5);</span>
     background-color: rgba(<span class="highlight">#000000</span>, .5);
@@ -217,11 +225,11 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
 /* Comment in CSS */
 </code></pre></p>
 
-<p><code class="language-css">_main.scss</code> should have a table of contents. The table of contents will have CSS comments <code class="language-css">/* */</code> so that it will be output in the CSS file. All .scss files from all folders will be included in _main.scss.</p>
+	<p><code class="language-css">_main.scss</code> should have a table of contents. The table of contents will have CSS comments <code class="language-css">/* */</code> so that it will be output in the CSS file. All .scss files from all folders will be included in _main.scss.</p>
 
 	<h4>Example: _main.scss</h4>
 
-<pre><code class="language-css">/**
+	<pre><code class="language-css">/**
  * Table of Contents
  *
  * 1.0 - Reset
@@ -442,4 +450,6 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 	</ul>
 </footer>
 
-<script src="{{ site.url }}/css/assets/js/prism.min.js" async></script>
+<script src="assets/js/prism.min.js" async></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+---
+permalink: /child
+layout: default
+---
+<h2>About Child Theme Guides</h2>
+
+<p>In order to allow our beloved clients to have their own customizations based on our themes, we declare them compatible with child themes. On top of that, we highly encourage everyone to use a child theme to keep a better track of what is custom made and what is theme based.</p>
+
+<p>Here is our <a href="https://github.com/pixelgrade/guides/tree/master/wp-theme-child">Child Theme Example</a></p>
+
+<h3>An honest promise</h3>
+
+<p>This is a promise from our side that we're keeping our themes aligned to WordPress standards, and we will always give our best to create products that work smoothly with the child theme version.</p>
+
+<h3>The importance of a child theme</h3>
+
+<p>Even if the WordPress documentation about <a href="https://codex.wordpress.org/Child_Themes">child themes</a> covers up pretty much everything we want to explain, let's check the big points as follows:</p>
+
+<ul>
+	<li><a href="https://codex.wordpress.org/Child_Themes#">Assets Management</a> –– Always imagine that a user may want to remove or change assets (like styles or scripts), so try to not make them interdependent.</li>
+	<li><a href="https://codex.wordpress.org/Child_Themes#Template_Files">Template Files</a> –– We try to break our templates as much as we can in order to simplify and facilitate the template overwrite process.</li>
+	<li><a href="https://codex.wordpress.org/Child_Themes#Using_functions.php">Functions overloading</a> –– Allow PHP functions to be overloaded by the child theme's `functions.php` file.</li>
+	<li><a href="https://codex.wordpress.org/Child_Themes#Internationalization">Internationalization</a> –– The user can always have his strings, and he should always be able to translate them.</li>
+</ul>
+
+{{
+"
+## Some proof examples
+
+### Template overwriting
+
+The most common usage of a child theme is to override template parts. For example, a sidebar, if we have a theme with the following file at.
+
+`/themes/template/sidebar.php`
+" | markdownify
+}}
+
+{% highlight php startinline=true %}
+<?php
+/**
+ * The sidebar containing the main widget area.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ */
+
+if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+    return;
+}?>
+<div id="sidebar" class="widget-area">
+	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+</div>
+{% endhighlight %}
+
+{{
+"We can definitely add our own file in child theme (with the specifications from the first example) with the following file
+
+`/themes/child-theme/sidebar.php`
+" | markdownify }}
+{% highlight php startinline=true linenos=table %}
+<?php
+/**
+ * The sidebar containing the main widget area.
+ */
+
+if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+    return;
+}?>
+<div id="my-sidebar" class="my-own-awesome-class widget-area">
+	<div class="my-wrapper">
+		<?php dynamic_sidebar( 'sidebar-1' ); ?>
+	</div>
+</div>
+
+{% endhighlight %}
+
+{{
+"Now `my-own-awesome-class` is safe in child theme and it won't be removed at any theme update and WordPress will always choose a template from child themes when it does find one on the same path.
+
+### Assets replacement
+
+Even if it is not a best practice, sometimes you need to replace assets like CSS or JS files or libraries.
+
+Note that the template overwriting doesn't work with anything else than .php files so when we talk about assets WordPress is saving them as a queue and we can modify that it
+
+One example could be the replacement of jQuery library with your desired version. In our child theme functions.php file we need to add a function that removes the current jQuery version and add our own from CDN(remember is just an example).
+" | markdownify }}
+
+{% highlight php startinline=true linenos=table %}
+<?php
+/**
+* Dequeue the jQuery script and add our own version.
+*
+* Hooked to the wp_print_scripts action, with a late priority (100),
+* so that it is after the script was enqueued.
+*/
+function my_own_theme_scripts() {
+	// remove the current version
+	wp_dequeue_script( 'jquery' );
+	// register my desired version
+	wp_register_script( 'jquery', 'https://code.jquery.com/jquery-3.1.0.min.js', false, '3.1.0' );
+	// load my version, here or somewhere else
+	wp_enqueue_script( 'jquery' );
+}
+add_action( 'wp_print_scripts', 'my_own_theme_scripts' );
+{% endhighlight %}
