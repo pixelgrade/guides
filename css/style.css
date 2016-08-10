@@ -284,7 +284,7 @@ body { padding: 0 1em; max-width: 50em; margin-left: auto; margin-right: auto; d
 
 .note .note_content { padding: 10px; border-left: 1px solid #333; }
 
-code.highlighter-rouge { border: 1px solid #d0c5be; border-radius: 5px; background-color: #f5f2f0; display: inline-block; padding: 0 5px; line-height: 25px; }
+code.highlighter-rouge { border: 1px solid #d0c5be; border-radius: 5px; background-color: #f5f2f0; display: inline-block; padding: 0 5px; margin-bottom: 0; line-height: 25px; }
 
 .go_top { border-radius: 50%; float: right; border: 2px solid; display: block; line-height: 13px; cursor: pointer; }
 
