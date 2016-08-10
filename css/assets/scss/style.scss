@@ -25,6 +25,7 @@ body {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
+	overflow-x: hidden;
 }
 
 .main-content {
@@ -82,4 +83,10 @@ code.highlighter-rouge {
 	i {
 		font-size: 30px;
 	}
+}
+
+.site-footer.menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
