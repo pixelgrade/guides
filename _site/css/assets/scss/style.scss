@@ -1,0 +1,85 @@
+@import "settings";
+
+@import "generic/normalize";
+@import "generic/reset";
+
+@import "base/typography";
+
+@import "tools/typeline";
+@import "tools/material-icons";
+
+@import "vendor/prism";
+
+
+@import "components/chapter";
+@import "components/nav";
+
+// sticky footer https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+
+body {
+	padding: 0 1em;
+	max-width: 50em;
+	margin-left: auto;
+	margin-right: auto;
+
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.main-content {
+	flex: 1;
+	margin-bottom: 20px;
+}
+
+.project-tagline {
+  text-align: right;
+}
+
+.note {
+	display: flex;
+	border: 1px solid #333;
+	border-radius: 6px;
+	background: #f5f2f0;
+
+	margin: 10px 0;
+
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: nowrap;
+
+	.icon {
+		flex-basis: 100px;
+		color: #fff900;
+		text-align: center;
+		font-size: 45px;
+		text-shadow: 1px 1px 2px #968b02;
+	}
+
+	.note_content {
+		padding: 10px;
+		border-left: 1px solid #333;
+	}
+}
+
+code.highlighter-rouge {
+	border: 1px solid #d0c5be;
+	border-radius: 5px;
+	background-color: #f5f2f0;
+	display: inline-block;
+	padding: 0 5px;
+	line-height: 25px;
+}
+
+.go_top {
+	border-radius: 50%;
+	float: right;
+	border: 2px solid;
+	display: block;
+	line-height: 13px;
+	cursor: pointer;
+
+	i {
+		font-size: 30px;
+	}
+}

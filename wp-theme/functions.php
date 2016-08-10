@@ -105,6 +105,7 @@ add_action( 'after_setup_theme', 'guides_setup' );
 function guides_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'guides_content_width', 1050, 0 );
 }
+
 add_action( 'after_setup_theme', 'guides_content_width', 0 );
 
 
@@ -121,7 +122,7 @@ function guides_load_assets() {
 	/**
 	 * Depending of what scripts do we use, we may modify the dependency array later
 	 */
-	$main_style_deps = array();
+	$main_style_deps  = array();
 	$main_script_deps = array();
 
 	/**
@@ -156,28 +157,29 @@ function guides_admin_scripts() {
 	/**
 	 * Always localize strings displayed by our js scripts
 	 */
-	$translation_array = array (
-		'import_failed' => esc_html__( 'The import didn\'t work completely!', 'guides') . '<br/>' . esc_html__( 'Check out the errors given. You might want to try reloading the page and try again.', 'guides'),
-		'import_confirm' => esc_html__( 'Importing the demo data will overwrite your current site content and options. Proceed anyway?', 'guides'),
-		'import_phew' => esc_html__( 'Phew...that was a hard one!', 'guides'),
-		'import_success_note' => esc_html__( 'The demo data was imported without a glitch! Awesome! ', 'guides') . '<br/><br/>',
-		'import_success_reload' => '<i>' . esc_html__( 'We have reloaded the page on the right, so you can see the brand new data!', 'guides') . '</i>',
-		'import_success_warning' => '<p>' . esc_html__( 'Remember to update the passwords and roles of imported users.', 'guides') . '</p><br/>',
-		'import_all_done' => esc_html__( "All done!", 'guides'),
-		'import_working' => esc_html__( "Working...", 'guides'),
-		'import_widgets_failed' => esc_html__( "The setting up of the demo widgets failed...", 'guides'),
-		'import_widgets_error' => esc_html__( 'The setting up of the demo widgets failed', 'guides') . '</i><br />' . esc_html__( '(The script returned the following message', 'guides'),
-		'import_widgets_done' => esc_html__( 'Finished setting up the demo widgets...', 'guides'),
-		'import_theme_options_failed' => esc_html__( "The importing of the theme options has failed...", 'guides'),
-		'import_theme_options_error' => esc_html__( 'The importing of the theme options has failed', 'guides') . '</i><br />' . esc_html__( '(The script returned the following message', 'guides'),
-		'import_theme_options_done' => esc_html__( 'Finished importing the demo theme options...', 'guides'),
-		'import_posts_failed' => esc_html__( "The importing of the theme options has failed...", 'guides'),
-		'import_posts_step' => esc_html__( 'Importing posts | Step', 'guides'),
-		'import_error' =>  esc_html__( "Error:", 'guides'),
-		'import_try_reload' =>  esc_html__( "You can reload the page and try again.", 'guides'),
+	$translation_array = array(
+		'import_failed'               => esc_html__( 'The import didn\'t work completely!', 'guides' ) . '<br/>' . esc_html__( 'Check out the errors given. You might want to try reloading the page and try again.', 'guides' ),
+		'import_confirm'              => esc_html__( 'Importing the demo data will overwrite your current site content and options. Proceed anyway?', 'guides' ),
+		'import_phew'                 => esc_html__( 'Phew...that was a hard one!', 'guides' ),
+		'import_success_note'         => esc_html__( 'The demo data was imported without a glitch! Awesome! ', 'guides' ) . '<br/><br/>',
+		'import_success_reload'       => '<i>' . esc_html__( 'We have reloaded the page on the right, so you can see the brand new data!', 'guides' ) . '</i>',
+		'import_success_warning'      => '<p>' . esc_html__( 'Remember to update the passwords and roles of imported users.', 'guides' ) . '</p><br/>',
+		'import_all_done'             => esc_html__( "All done!", 'guides' ),
+		'import_working'              => esc_html__( "Working...", 'guides' ),
+		'import_widgets_failed'       => esc_html__( "The setting up of the demo widgets failed...", 'guides' ),
+		'import_widgets_error'        => esc_html__( 'The setting up of the demo widgets failed', 'guides' ) . '</i><br />' . esc_html__( '(The script returned the following message', 'guides' ),
+		'import_widgets_done'         => esc_html__( 'Finished setting up the demo widgets...', 'guides' ),
+		'import_theme_options_failed' => esc_html__( "The importing of the theme options has failed...", 'guides' ),
+		'import_theme_options_error'  => esc_html__( 'The importing of the theme options has failed', 'guides' ) . '</i><br />' . esc_html__( '(The script returned the following message', 'guides' ),
+		'import_theme_options_done'   => esc_html__( 'Finished importing the demo theme options...', 'guides' ),
+		'import_posts_failed'         => esc_html__( "The importing of the theme options has failed...", 'guides' ),
+		'import_posts_step'           => esc_html__( 'Importing posts | Step', 'guides' ),
+		'import_error'                => esc_html__( "Error:", 'guides' ),
+		'import_try_reload'           => esc_html__( "You can reload the page and try again.", 'guides' ),
 	);
 	wp_localize_script( 'guides-admin-general-scripts', 'guides_admin_js_texts', $translation_array );
 }
+
 add_action( 'admin_enqueue_scripts', 'guides_admin_scripts' );
 
 /**
@@ -191,17 +193,17 @@ require get_template_directory() . '/inc/template-tags.php';
 
 require get_template_directory() . '/inc/extras.php';
 
-require get_template_directory() . '/inc/widgets.php';
+get_template_part( 'inc/widgets' );
 
 /**
  * Load various plugin integrations
  */
-require get_template_directory() . '/inc/integrations.php';
+get_template_part( 'inc/integrations.php' );
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+get_template_part( 'inc/customizer.php' );
 
 /**
  * Load Recommended/Required plugins notification

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Guides by PixelGrade</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://127.0.0.1:4000/css/style.css" media="screen">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-6079543-33', 'auto');
+		ga('send', 'pageview');
+	</script>
+</head>
+
+<body>
+<section class="page-header">
+	<h1 class="project-name"> Guides by PixelGrade </h1>
+	<p class="project-tagline">Basic guides, components and standards for WordPress development</p>
+	<nav class="menu">
+		<ul class="menu__list">
+			
+				
+				
+				<li class="menu__item">
+					<a class="menu__link btn" href="https://github.com/pixelgrade/guides" >View on GitHub</a>
+				</li>
+			
+				
+				
+				<li class="menu__item">
+					<a class="menu__link btn" href="http://pixelgrade.github.io/guides/contribute" >Contribute</a>
+				</li>
+			
+				
+				
+				<li class="menu__item">
+					<a class="menu__link btn" href="http://pixelgrade.github.io/guides/style" >Style</a>
+				</li>
+			
+				
+				
+				<li class="menu__item">
+					<a class="menu__link btn" href="http://pixelgrade.github.io/guides/wp-theme" >Theme</a>
+				</li>
+			
+				
+				
+				<li class="menu__item">
+					<a class="menu__link btn" href="http://pixelgrade.github.io/guides/child" >Child Theme</a>
+				</li>
+			
+				
+				
+				<li class="menu__item">
+					<a class="menu__link btn" href="http://pixelgrade.github.io/guides/components" >Components</a>
+				</li>
+			
+		</ul>
+	</nav>
+</section>
+
+<section class="main-content">
+
+
+<h2 id="pixelgrade-theme-basis">PixelGrade Theme basis</h2>
+
+<p>These are the rules to follow while developing a new WordPress theme.</p>
+
+<h2 id="the-roots-of-our-structure">The roots of our structure</h2>
+
+<p>We follow the <a href="https://github.com/automattic/_s">_S structure</a> since it is a simple and popular framework. It is easy to use and understand for every WordPress community member.</p>
+
+<h2 id="wordpress-coding-standards">WordPress Coding Standards</h2>
+
+<p>Since we are working with WordPress we respect the environment, concepts and <a href="https://make.wordpress.org/core/handbook/best-practices/coding-standards/php">coding standards</a>.</p>
+
+<p>Aside the rules from Codex we also need to check:</p>
+
+<ol>
+  <li>Every string must be output in an escaped way with <a href="http://php.net/gettext">gettext</a> functions like <code class="highlighter-rouge">esc_html__</code> or <code class="highlighter-rouge">esc_html_e</code>
+    <ul>
+      <li>For these gettext functions always use the same string textdomain which is set <a href="https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L25">here</a> and use only strings (no variables or constants).</li>
+      <li>Never add HTML code inside the functions above, if you need to compose an HTML block with strings inside use <code class="highlighter-rouge">sprintf</code>.</li>
+      <li>Also note that strings added to <code class="highlighter-rouge">sprintf</code> are XSS safe, and they can be output simply with <code class="highlighter-rouge">__</code> or <code class="highlighter-rouge">_e</code> functions.</li>
+    </ul>
+  </li>
+  <li>Always check what the <a href="https://wordpress.org/plugins/theme-check">Theme Check Plugin</a> says.</li>
+  <li>Always localize JavaScript strings or parameters needed (here is an <a href="https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L159-L179">example</a>).</li>
+</ol>
+
+<h2 id="a-child-theme-perspective">A Child Theme perspective</h2>
+<ul>
+  <li>Every theme should have a child theme repository as an example following this <a href="http://pixelgrade.github.io/guides/child">structure</a>.</li>
+  <li>For child themes to succeed we need to allow them control, so whenever we declare a function we check it with the <code class="highlighter-rouge">function_exists</code> function, in case it does exists it means it was created by a child theme.</li>
+  <li>Try to break templates as much as you can in order to be easier for child themes to <a href="http://pixelgrade.github.io/guides/child#template-overwriting">overwrite templates</a>.</li>
+</ul>
+
+<h2 id="plugins-integrations">Plugins Integrations</h2>
+
+<ul>
+  <li>We use <a href="http://tgmpluginactivation.com/">TGMA</a> to recommend plugins</li>
+  <li>For various integrations with plugins we use the integrations.php file and folder. For example the <a href="https://github.com/pixelgrade/guides/blob/master/wp-theme/inc/integrations/woocommerce.php">woocommerce.php</a> file</li>
+  <li>For Theme Options we use <a href="https://github.com/pixelgrade/customify">Customify</a></li>
+  <li>For Custom Post Types and Custom Metadata we use <a href="https://github.com/pixelgrade/pixtypes">PixTypes</a></li>
+  <li>For Shortcodes management we use <a href="https://github.com/pixelgrade/pixcodes">PixCodes</a></li>
+</ul>
+
+<ol>
+  <li><strong>Licensed under GPLv3. The sky is the limit.</strong></li>
+</ol>
+
+
+</section>
+
+<footer class="site-footer menu">
+	<span class="site-footer-owner">
+		<a href="https://github.com/pixelgrade/guides">Guides</a> –– Handcrafted with love by <a href="https://github.com/pixelgrade">PixelGrade</a>.
+	</span>
+
+	<span class="go_top"><i class="icon">arrow_upward</i></span>
+</footer>
+
+</body>
+</html>

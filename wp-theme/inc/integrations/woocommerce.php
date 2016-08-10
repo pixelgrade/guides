@@ -3,6 +3,9 @@
  * In this file we will put every function or hook which is needed to provide WooCommerce compatibility
  */
 
+/**
+ * Declare support for WooCommerce
+ */
 function guides_add_woocommerce_support() {
 	add_theme_support( 'woocommerce' );
 }

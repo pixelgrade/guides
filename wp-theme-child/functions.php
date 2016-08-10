@@ -10,9 +10,6 @@
  * @package GuidesChild
  */
 
-
-
-
 /**
  * Setup Guides Child Theme's textdomain.
  *
@@ -23,10 +20,6 @@ function guides_child_theme_setup() {
 	load_child_theme_textdomain( 'guides-child', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'guides_child_theme_setup' );
-
-
-
-
 
 /**
  *

@@ -7,6 +7,33 @@
  * @package Guides
  */
 
+if ( ! function_exists( 'guides_get_option' ) ) {
+	/**
+	 * Get option from the database
+	 *
+	 * @param string
+	 *
+	 * @return mixed
+	 */
+	function guides_get_option( $option, $default = null ) {
+		global $pixcustomify_plugin;
+
+		// if there is set an key in url force that value
+		if ( isset( $_GET[ $option ] ) && ! empty( $option ) ) {
+
+			return $_GET[ $option ];
+
+		} elseif ( $pixcustomify_plugin !== null ) {
+
+			$customify_value = $pixcustomify_plugin->get_option( $option, $default );
+
+			return $customify_value;
+		}
+
+		return $default;
+	} //end function
+} // end if guides_get_option exists
+
 /**
  * Adds custom classes to the array of body classes.
  *
