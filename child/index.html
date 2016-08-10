@@ -4,9 +4,9 @@ layout: default
 ---
 <h2>About Child Theme Guides</h2>
 
-<p>In order to allow our beloved clients to have their own customizations based on our themes, we declare them compatible with child themes. On top of that, we highly encourage everyone to use a child theme to keep a better track of what is custom made and what is theme based.</p>
+<p>In order to allow our beloved clients to have their own customizations based on our themes, we make them compatible with child themes. On top of that, we highly encourage everyone to use a child theme to keep a better track of what is custom made and what is theme based.</p>
 
-<p>Here is our <a href="https://github.com/pixelgrade/guides/tree/master/wp-theme-child">Child Theme Example</a></p>
+<p>Here is our <a href="https://github.com/pixelgrade/guides/tree/master/wp-theme-child">Child Theme Example</a>.</p>
 
 <h3>An honest promise</h3>
 
@@ -17,10 +17,10 @@ layout: default
 <p>Even if the WordPress documentation about <a href="https://codex.wordpress.org/Child_Themes">child themes</a> covers up pretty much everything we want to explain, let's check the big points as follows:</p>
 
 <ul>
-	<li><a href="https://codex.wordpress.org/Child_Themes#">Assets Management</a> –– Always imagine that a user may want to remove or change assets (like styles or scripts), so try to not make them interdependent.</li>
-	<li><a href="https://codex.wordpress.org/Child_Themes#Template_Files">Template Files</a> –– We try to break our templates as much as we can in order to simplify and facilitate the template overwrite process.</li>
-	<li><a href="https://codex.wordpress.org/Child_Themes#Using_functions.php">Functions overloading</a> –– Allow PHP functions to be overloaded by the child theme's `functions.php` file.</li>
-	<li><a href="https://codex.wordpress.org/Child_Themes#Internationalization">Internationalization</a> –– The user can always have his strings, and he should always be able to translate them.</li>
+	<li><a href="https://codex.wordpress.org/Child_Themes#">Assets Management</a> –– always imagine that a user may want to remove or change assets (like styles or scripts), so try to not make them interdependent.</li>
+	<li><a href="https://codex.wordpress.org/Child_Themes#Template_Files">Template Files</a> –– we try to break our templates as much as we can in order to simplify and facilitate the template overwrite process.</li>
+	<li><a href="https://codex.wordpress.org/Child_Themes#Using_functions.php">Functions overloading</a> –– allow PHP functions to be overloaded by the child theme's `functions.php` file.</li>
+	<li><a href="https://codex.wordpress.org/Child_Themes#Internationalization">Internationalization</a> –– the user can always have his strings, and he should always be able to translate them.</li>
 </ul>
 
 {{
@@ -29,10 +29,8 @@ layout: default
 
 ### Template overwriting
 
-The most common usage of a child theme is to override template parts. For example, a sidebar, if we have a theme with the following file at.
-
-`/themes/template/sidebar.php`
-" | markdownify
+The most common usage of a child theme is to override template parts. For example, a sidebar. If we have a theme with the following file at: `/themes/template/sidebar.php`"
+| markdownify
 }}
 
 {% highlight php startinline=true %}
@@ -52,10 +50,8 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 {% endhighlight %}
 
 {{
-"We can definitely add our own file in child theme (with the specifications from the first example) with the following file
-
-`/themes/child-theme/sidebar.php`
-" | markdownify }}
+"we can definitely add our own file in child theme (with the specifications from the first example) with the following file: `/themes/child-theme/sidebar.php`"
+| markdownify }}
 {% highlight php startinline=true linenos=table %}
 <?php
 /**
@@ -80,9 +76,9 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 
 Even if it is not a best practice, sometimes you need to replace assets like CSS or JS files or libraries.
 
-Note that the template overwriting doesn't work with anything else than .php files so when we talk about assets WordPress is saving them as a queue and we can modify that it
+Note that the template overwriting doesn't work with anything else than .php files so when we talk about assets WordPress is saving them as a queue and we can modify that.
 
-One example could be the replacement of jQuery library with your desired version. In our child theme functions.php file we need to add a function that removes the current jQuery version and add our own from CDN(remember is just an example).
+One example could be the replacement of jQuery library with your desired version. In our child theme functions.php file we need to add a function that removes the current jQuery version and add our own from CDN(remember, this is just an example).
 " | markdownify }}
 
 {% highlight php startinline=true linenos=table %}
