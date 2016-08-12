@@ -1,7 +1,7 @@
 title: Guides by PixelGrade
 email: contact@pixelgrade.com
 description: '– – –'
-url: 'http://127.0.0.1:4000/guides/'
+url: 'http://127.0.0.1:4000/'
 twitter_username: pixelgrade
 github_username: pixelgrade
 latest_version: 1.3.2
@@ -24,14 +24,14 @@ navigation:
 - text: View on GitHub
   url: https://github.com/pixelgrade/guides
 - text: Contribute
-  url: /guides/contribute
+  url: /contribute
 - text: Stylesheets
-  url: /guides/stylesheets
+  url: /stylesheets
 - text: Scripts
-  url: /guides/scripts
+  url: /scripts
 - text: Theme
-  url: /guides/wp-theme
+  url: /wp-theme
 - text: Child Theme
-  url: /guides/child
+  url: /child
 - text: Components
-  url: /guides/components
+  url: /components
