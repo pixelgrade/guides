@@ -134,6 +134,8 @@ html { font-size: 100%; line-height: 1.6; color: rgba(0, 0, 0, 0.5); }
 
 h1, h2, h3, h4, h5, h6, ul, ol, dl, p, table, pre, code { margin-bottom: 1rem; }
 
+pre { overflow-x: auto; }
+
 h1, h2, h3, h4, h5, h6 { font-size: 1.6rem; color: black; margin-top: 2rem; }
 
 ul, ol { list-style-position: inside; }
@@ -231,52 +233,46 @@ pre[class*="language-"] { padding: 1em; margin: .5em 0; overflow: auto; }
 
 nav a { text-decoration: none; color: inherit; }
 
-.menu { padding: 20px 15px; background: #f5f2f0; position: relative; }
-
-.menu:before, .menu:after { content: ''; position: absolute; top: 0; background: #ebebeb; width: 100%; height: 100%; }
-
-.menu:before { left: -100%; }
-
-.menu:after { right: -100%; }
-
 /* Menu Animation from http://tympanus.net/Development/LineMenuStyles/#Valentine */
-.menu__list { position: relative; display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; justify-content: space-between; }
+.menu { width: 20em; padding: 10em 2em; }
 
-.menu__link { font-size: 18px; font-weight: bold; display: block; padding: 5px 15px; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none; -khtml-user-select: none; -webkit-tap-highlight-color: transparent; }
+.menu__list { position: relative; margin: 0; padding: 0; list-style: none; }
+
+.menu__link { font-size: 18px; font-weight: bold; display: block; padding: 0.5em 0.75em; cursor: pointer; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
 
 .menu__link:hover, .menu__link:focus { outline: none; }
 
-.menu .menu__item { display: block; position: relative; margin: 0; }
+.menu__item { display: block; position: relative; margin: 0; margin-bottom: 0.25em; }
 
-.menu .menu__link { position: relative; display: block; text-align: center; -webkit-transition: color 0.3s; transition: color 0.3s; }
+.menu__link { position: relative; display: block; transition: color 0.3s; }
 
-.menu .menu__item:hover .menu__link { color: #d94f5c; }
+.menu__item:hover .menu__link { color: #d94f5c; }
 
-.menu .menu__item::before, .menu .menu__item::after, .menu .menu__link::before, .menu .menu__link::after { content: ''; position: absolute; background: #d94f5c; -webkit-transform-origin: -250% 350%; transform-origin: -250% 350%; -webkit-transition: -webkit-transform 0.5s; transition: transform 0.5s; -webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1); transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+.menu__item::before, .menu__item::after, .menu__link::before, .menu__link::after { content: ''; position: absolute; background: #d94f5c; -webkit-transform-origin: -250% 350%; transform-origin: -250% 350%; -webkit-transition: -webkit-transform 0.5s; transition: transform 0.5s; -webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1); transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
 
-.menu .menu__item::before, .menu .menu__item::after { top: 0; width: 2px; height: 100%; -webkit-transform: scale3d(1, 0, 1); transform: scale3d(1, 0, 1); }
+.menu__item::before, .menu__item::after { top: 0; width: 2px; height: 100%; -webkit-transform: scale3d(1, 0, 1); transform: scale3d(1, 0, 1); }
 
 /* left line */
-.menu .menu__item::before { right: 0; -webkit-transition-delay: 0.05s; transition-delay: 0.05s; }
+.menu__item::before { right: 0; -webkit-transition-delay: 0.05s; transition-delay: 0.05s; }
 
 /* right line */
-.menu .menu__item::after { left: 0; -webkit-transition-delay: 0.15s; transition-delay: 0.15s; }
+.menu__item::after { left: 0; -webkit-transition-delay: 0.15s; transition-delay: 0.15s; }
 
-.menu .menu__link::before, .menu .menu__link::after { right: 0; width: 100%; height: 2px; -webkit-transform: scale3d(0, 1, 1); transform: scale3d(0, 1, 1); }
+.menu__link::before, .menu__link::after { right: 0; width: 100%; height: 2px; -webkit-transform: scale3d(0, 1, 1); transform: scale3d(0, 1, 1); }
 
 /* top line */
-.menu .menu__link::before { top: 0; -webkit-transition-delay: 0.1s; transition-delay: 0.1s; }
+.menu__link::before { top: 0; -webkit-transition-delay: 0.1s; transition-delay: 0.1s; }
 
 /* bottom line */
-.menu .menu__link::after { bottom: 0; }
+.menu__link::after { bottom: 0; }
 
-.menu .menu__item:hover::before, .menu .menu__item:hover::after, .menu .menu__item:hover .menu__link::before, .menu .menu__item:hover .menu__link::after, .menu .menu__item.current::before, .menu .menu__item.current::after, .menu .menu__item.current .menu__link::before, .menu .menu__item.current .menu__link::after { -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+.menu__item:hover::before, .menu__item:hover::after, .menu__item:hover .menu__link::before, .menu__item:hover .menu__link::after, .menu__item.current::before, .menu__item.current::after, .menu__item.current .menu__link::before, .menu__item.current .menu__link::after { -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
 
-body { padding: 0 1em; max-width: 50em; margin-right: auto; margin-left: auto; display: flex; min-height: 100vh; flex-direction: column; }
+body { display: flex; min-height: 100vh; }
+
+.main-content { padding: 0 1em; max-width: 50em; margin-right: auto; margin-left: auto; }
 
 .main-content { flex: 1; margin-bottom: 20px; }
-
-.project-tagline { text-align: left; }
 
 .note { display: flex; border: 1px solid #333; border-radius: 6px; background: #f5f2f0; margin: 10px 0; flex-direction: row; align-items: center; flex-wrap: nowrap; }
 
@@ -284,8 +280,10 @@ body { padding: 0 1em; max-width: 50em; margin-right: auto; margin-left: auto; d
 
 .note .note_content { padding: 10px; border-right: 1px solid #333; }
 
-code.highlighter-rouge { border: 1px solid #d0c5be; border-radius: 5px; background-color: #f5f2f0; display: inline-block; padding: 0 5px; line-height: 25px; }
+code.highlighter-rouge { border: 1px solid #d0c5be; border-radius: 5px; background-color: #f5f2f0; display: inline-block; padding: 0 5px; margin-bottom: 0; line-height: 25px; }
 
 .go_top { border-radius: 50%; float: left; border: 2px solid; display: block; line-height: 13px; cursor: pointer; }
 
 .go_top i { font-size: 30px; }
+
+.site-footer.menu { display: flex; justify-content: space-between; align-items: center; }

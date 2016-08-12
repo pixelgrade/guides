@@ -17,23 +17,20 @@
 // sticky footer https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
 
 body {
+	display: flex;
+	min-height: 100vh;
+}
+
+.main-content {
 	padding: 0 1em;
 	max-width: 50em;
 	margin-left: auto;
 	margin-right: auto;
-
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
 }
 
 .main-content {
 	flex: 1;
 	margin-bottom: 20px;
-}
-
-.project-tagline {
-  text-align: right;
 }
 
 .note {
@@ -68,6 +65,7 @@ code.highlighter-rouge {
 	background-color: #f5f2f0;
 	display: inline-block;
 	padding: 0 5px;
+	margin-bottom: 0;
 	line-height: 25px;
 }
 
@@ -82,4 +80,10 @@ code.highlighter-rouge {
 	i {
 		font-size: 30px;
 	}
+}
+
+.site-footer.menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }

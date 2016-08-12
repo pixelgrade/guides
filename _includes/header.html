@@ -1,17 +1,4 @@
 <section class="page-header">
 	<h1 class="project-name">{% if page.title %} {{ page.title }} {% else %} {{ site.title }} {% endif %}</h1>
 	<p class="project-tagline">{% if page.tagline %} {{ page.tagline }} {% else %}{{ site.description }}{% endif %}</p>
-	<nav class="menu">
-		<ul class="menu__list">
-			{% for link in site.navigation %}
-				{% assign current = nil %}
-				{% if page.url == link.url %}
-					{% assign current = ' current' %}
-				{% endif %}
-				<li class="menu__item{{ current }}">
-					<a class="menu__link btn" href="{{ link.url }}" >{{ link.text }}</a>
-				</li>
-			{% endfor %}
-		</ul>
-	</nav>
 </section>
