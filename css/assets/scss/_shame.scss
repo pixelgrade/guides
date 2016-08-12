@@ -13,3 +13,7 @@ img {
 
 .widget { @extend .c-card; }
 // .widget-title { @extend .c-card__title; }
+
+.gutter.gl {
+	padding-right: 20px;
+}

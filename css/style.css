@@ -134,6 +134,8 @@ html { font-size: 100%; line-height: 1.6; color: rgba(0, 0, 0, 0.5); }
 
 h1, h2, h3, h4, h5, h6, ul, ol, dl, p, table, pre, code { margin-bottom: 1rem; }
 
+pre { overflow-x: auto; }
+
 h1, h2, h3, h4, h5, h6 { font-size: 1.6rem; color: black; margin-top: 2rem; }
 
 ul, ol { list-style-position: inside; }
@@ -278,8 +280,10 @@ body { display: flex; min-height: 100vh; }
 
 .note .note_content { padding: 10px; border-left: 1px solid #333; }
 
-code.highlighter-rouge { border: 1px solid #d0c5be; border-radius: 5px; background-color: #f5f2f0; display: inline-block; padding: 0 5px; line-height: 25px; }
+code.highlighter-rouge { border: 1px solid #d0c5be; border-radius: 5px; background-color: #f5f2f0; display: inline-block; padding: 0 5px; margin-bottom: 0; line-height: 25px; }
 
 .go_top { border-radius: 50%; float: right; border: 2px solid; display: block; line-height: 13px; cursor: pointer; }
 
 .go_top i { font-size: 30px; }
+
+.site-footer.menu { display: flex; justify-content: space-between; align-items: center; }

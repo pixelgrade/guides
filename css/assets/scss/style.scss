@@ -65,6 +65,7 @@ code.highlighter-rouge {
 	background-color: #f5f2f0;
 	display: inline-block;
 	padding: 0 5px;
+	margin-bottom: 0;
 	line-height: 25px;
 }
 
@@ -79,4 +80,10 @@ code.highlighter-rouge {
 	i {
 		font-size: 30px;
 	}
+}
+
+.site-footer.menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
