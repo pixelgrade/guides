@@ -2,7 +2,7 @@
 	<ul class="menu__list">
 		{% for link in site.navigation %}
 			{% assign current = nil %}
-			{% if page.url == link.url %}
+			{% if page.permalink != '/' and link.url contains page.url %}
 				{% assign current = ' current' %}
 			{% endif %}
 			<li class="menu__item{{ current }}">
