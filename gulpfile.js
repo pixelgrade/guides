@@ -4,7 +4,9 @@ var gulp 		= require('gulp'),
     prefix      = require('gulp-autoprefixer'),
     rename      = require('gulp-rename'),
     csscomb     = require('gulp-csscomb'),
-    rtlcss 		= require('gulp-rtlcss');
+    rtlcss 		= require('gulp-rtlcss'),
+	run         = require('gulp-run'),
+	gutil = require('gulp-util');
 
 gulp.task('style.css', function() {
     return gulp.src('assets/scss/style.scss')
@@ -27,6 +29,14 @@ gulp.task('styles', ['rtl.css'], function() {
 	// silcence
 });
 
-gulp.task('watch', ['styles'], function() {
+gulp.task('watch', ['styles', 'watch:jekyll'], function() {
     gulp.watch(['assets/scss/**/*.scss', 'components/**/*.scss'], ['styles']);
+});
+
+// Runs Jekyll build
+gulp.task('watch:jekyll', function() {
+	var shellCommand = ' bundle exec jekyll serve --config _config.yml,_config-local.yml --watch';
+	return gulp.src('./')
+		.pipe(run(shellCommand))
+		.on('error', gutil.log);
 });

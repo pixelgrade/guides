@@ -1,12 +1,13 @@
 {
-	"name": "components",
-	"devDependencies": {
-		"gulp": "*",
-		"gulp-sass": "*",
-		"gulp-autoprefixer": "*",
-		"gulp-sourcemaps": "*",
-		"gulp-rename": "*",
-		"gulp-csscomb": "*",
-		"gulp-rtlcss": "*"
-	}
+  "name": "components",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-csscomb": "*",
+    "gulp-rename": "*",
+    "gulp-rtlcss": "*",
+    "gulp-run": "^1.7.1",
+    "gulp-sass": "*",
+    "gulp-sourcemaps": "*"
+  }
 }
