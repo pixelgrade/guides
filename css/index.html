@@ -1,5 +1,5 @@
 ---
-permalink: /style
+permalink: /stylesheets
 layout: default
 title: Claws
 tagline: Stands for CSS Laws - Our CSS Guidelines
@@ -73,7 +73,7 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
 }</code></pre>
 		</li>
 		<li>When grouping selectors, keep individual selectors to a single line.
-			<pre><code class="language-">.selector,
+			<pre><code class="language-css">.selector,
 .another-selector,
 .and-another {
     display: block;
@@ -125,7 +125,7 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
 .selector { margin: <span class="highlight">0</span>; }</code></pre>
 		</li>
 		<li>Use HEX color codes unless using rgba() in raw CSS (SCSS’ rgba() function is overloaded to accept hex colors as a parameter).
-		<pre><code class="language-">// SCSS
+		<pre><code class="language-css">// SCSS
 .selector {
     <span class="strike">background-color: rgba(0,0,0, .5);</span>
     background-color: rgba(<span class="highlight">#000000</span>, .5);
@@ -440,6 +440,5 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 		<li><a href="http://csswizardry.com/2013/05/scope-in-css/">http://csswizardry.com/2013/05/scope-in-css/</a></li>
 		<li><a href="http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/</a></li>
 	</ul>
-</footer>
 
-<script src="{{ site.url }}/css/assets/js/prism.min.js" async></script>
+</footer>

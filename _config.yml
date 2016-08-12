@@ -1,7 +1,7 @@
 title: Guides by PixelGrade
 email: contact@pixelgrade.com
 description: 'Basic guides, components and standards for WordPress development'
-url: 'http://pixelgrade.github.io/guides/'
+url: 'http://127.0.0.1:4000'
 twitter_username: pixelgrade
 github_username: pixelgrade
 gems:
@@ -30,12 +30,14 @@ navigation:
 - text: View on GitHub
   url: https://github.com/pixelgrade/guides
 - text: Contribute
-  url: http://pixelgrade.github.io/guides/contribute
-- text: Style
-  url: http://pixelgrade.github.io/guides/style
+  url: /contribute
+- text: Stylesheets
+  url: /stylesheets
+- text: Scripts
+  url: /scripts
 - text: Theme
-  url: http://pixelgrade.github.io/guides/wp-theme
+  url: /wp-theme
 - text: Child Theme
-  url: http://pixelgrade.github.io/guides/child
+  url: /child
 - text: Components
-  url: http://pixelgrade.github.io/guides/components
+  url: /components
