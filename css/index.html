@@ -2,7 +2,7 @@
 permalink: /stylesheets
 layout: default
 title: Claws
-tagline: Stands for CSS Laws - Our CSS Guidelines
+tagline: ''
 ---
 <section class="table-of-contents">
 	<h2>Table of Contents</h2>
@@ -20,14 +20,6 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
 			</li>
 			<li><a href="#chapter-specificity">Dealing with Specificity</a></li>
 			<li><a href="#chapter-conclusion">Closing Remarks</a></li>
-			<!--<li>-->
-				<!--<a href="#chapter">Selector intent / Scoping</a>-->
-				<!--<ol>-->
-					<!--<li><a href="#">Specificity</a></li>-->
-					<!--<li><a href="#">!important</a></li>-->
-					<!--<li><a href="#">Hacking specificity</a></li>-->
-				<!--</ol>-->
-			<!--</li>-->
 		</ol>
 	</nav>
 
@@ -341,7 +333,7 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 		<li><strong>Shame</strong> &mdash; the place for prototyping, quick fixes and overrides</li>
 	</ul>
 
-	<h3>Folder Structure</h3>
+	<h3 id="subchapter-folder-structure">Folder Structure</h3>
 	<pre class="language-css">|-- base
 |-- components
 |-- generic
@@ -356,7 +348,7 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 |-- style.scss</pre>
 	<p>Given the <strong>WordPress</strong> environment in which we do our work, most times we will include in our project third-party plugins with their own CSS. These files should reside in the <code class="language-css">vendor</code> folder and the place in the Inverted Triangle would theoretically be the Components layer.</p>
 
-	<h3 id="subchapter-namespaces">Naming conventions</h3>
+	<h3 id="subchapter-naming-conventions">Naming conventions</h3>
 	<p>In no particular order, here are the individual namespaces and a brief description. We’ll look at each in more detail in a moment, but the following list should acquaint you with the kinds of thing we’re hoping to achieve.</p>
 	<h4>Objects: o-</h4>
 	<p>Signify that the element which it is applied to is an Object. It can be used for layout purposes or abstracting visual patterns. These elements’ properties shouldn’t be modified by other elements or based on context. Modifying the object itself should be avoided.</p>
@@ -372,7 +364,7 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 </section><!-- .chapter-architecture -->
 
 <section class="chapter  chapter--selectors">
-	<h2 id="chapter-selectors">CSS Selectors</h2>
+	<h3 id="chapter-selectors">CSS Selectors</h3>
 	The absence of scope in CSS is one of the main reasons code gets bad. Nesting is not an option since it brings unwanted specificity to your selectors. This leaves us with the only option of using a naming convention for the class names used.
 	<h4 id="subchapter-bem">BEM</h4>
 	<a href="http://getbem.com/naming/">http://getbem.com/naming/</a>
@@ -382,7 +374,7 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 
 	<p>An ID / class should be as short as possible but as long as necessary</p>
 
-	<h2>Dealing with specificity</h2>
+	<h2 id="chapter-specificity">Dealing with specificity</h2>
 	<ul>
 		<li>Never use IDs in CSS, ever. They have no advantage over classes (anything you can do with an ID, you can do with a class), they cannot be reused, and their specificity is way, way too high. Even an infinite number of chained classes will not trump the specificity of one ID.</li>
 		<li>Do not nest selectors unnecessarily. If <code class="language-css">.header-nav {}</code> will work, never use <code class="language-css">.header .header-nav {}</code>; to do so will literally double the specificity of the selector without any benefit.</li>
@@ -414,12 +406,12 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 </section><!-- .chapter-selectors -->
 
 <section class="chapter  chapter--scss-considerations">
-	<h2 id="chapter-scss-considerations">SCSS Considerations</h2>
+	<h2 id="chapter-conclusion">Closing Remarks</h2>
 
 	<h3>Mixins and @extend</h3>
 	Mixins are powerful tools which can be used to leverage your work and also handy shortcuts. The most valuable use of mixins is generating CSS. It is very helpful for having DRY code and changes in different modules come with less effort. We should at most times try to keep the declaration and usage of mixins inside the same files so we don’t create any unneeded dependencies. The same applies for @extend which must not be used inside components! Components should be independent chunks of code with high portability. Also using @extend proves to be less performant than using mixins (probably even repeating code) when the source is gzipped. (see http://csswizardry.com/2016/02/mixins-better-for-performance/)
 
-	<h3>Organization</h3>
+	<h3>Keep your codebase clean</h3>
 	<li>Organize sections of code by component.</li>
 	<li>Develop a consistent commenting hierarchy.</li>
 	<li>Use consistent white space to your advantage when separating sections of code for scanning larger documents.</li>

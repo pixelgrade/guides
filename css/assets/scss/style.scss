@@ -15,22 +15,19 @@
 @import "components/nav";
 
 // sticky footer https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
-
 body {
 	display: flex;
-	min-height: 100vh;
 }
 
 .main-content {
-	padding: 0 1em;
-	max-width: 50em;
-	margin-left: auto;
+	flex-basis: 50em;
+	flex-grow: 0;
 	margin-right: auto;
-}
-
-.main-content {
-	flex: 1;
-	margin-bottom: 20px;
+	overflow: hidden; // contain children margins
+	padding-left: 1em;
+	padding-right: 1em;
+	max-width: 72em;
+	margin-right: auto;
 }
 
 .note {
