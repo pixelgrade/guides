@@ -2,10 +2,32 @@
 permalink: /scripts
 layout: default
 title: Scripts
-tagline: Stands for CSS Laws - Our CSS Guidelines
+tagline: ''
 ---
 
+<h3>Syntax and Formatting</h3>
+<p>Code should comply with the WordPress standards as it is aimed towards readability and consistency between PHP and JS files in the WordPress codebase.</p>
+<p>The complete WP JavaScript standards are available at <a href="#">this link</a> but here are some things to keep in mind:</p>
+<ul>
+    <li>Indentation with tabs.</li>
+    <li>No whitespace at the end of line or on blank lines.</li>
+    <li>Lines should usually be no longer than 80 characters, and should not exceed 100 (counting tabs as 4 spaces). This is a “soft” rule, but long lines generally indicate unreadable or disorganized code.</li>
+    <li>if/else/for/while/try blocks should always use braces, and always go on multiple lines.</li>
+    <li>Unary special-character operators (e.g., ++, --) must not have space next to their operand.</li>
+    <li>Any , and ; must not have preceding space.</li>
+    <li>Any ; used as a statement terminator must be at the end of the line.</li>
+    <li>Any : after a property name in an object definition must not have preceding space.</li>
+    <li>The ? and : in a ternary conditional must have space on both sides.</li>
+    <li>No filler spaces in empty constructs (e.g., {}, [], fn()).</li>
+    <li>There should be a new line at the end of each file.</li>
+    <li>Any ! negation operator should have a following space.*</li>
+    <li>All function bodies are indented by one tab, even if the entire file is wrapped in a closure.*</li>
+    <li>Spaces may align code within documentation blocks or within a line, but only tabs should be used at the start of a line.*</li>
+</ul>
+
 <h3>Files Structure</h3>
+<p>We use Gulp to run tasks for concatenating JavaScript into one single file <code class="language-js">main.js</code> while keeping the source code modularized and third-party files separated</p>
+<p>We want to limit the scope for the final JavaScript code but also want a set o globally available variables and functions.</p>
 <pre><code class="language-js">|-- admin // standalone scripts to be used in the WP dashboard
 |-- main // used to define general scope and variables
     |-- functions.js
@@ -18,13 +40,12 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
     |-- jquery.dummy.js
     |-- ...
 |-- vendor
-    |-- velocity.js
     |-- ...</code></pre>
 
 <p>The module folder will contain two js files called <code class="language-">dummy.js</code> and <code class="language-">jquery.dummy.js</code> to give you a head start in writing desired the functionality to comply with our guidelines.</p>
 
-<h2>jQuery.dummy.js</h2>
-<p>Basic jQuery Plugin Prototype</p>
+
+<h3>Basic jQuery Plugin Prototype</h3>
 
 <pre class="line-numbers"><code class="language-js">// the semi-colon before the function invocation is a safety
 // net against concatenated scripts and/or other plugins
@@ -74,26 +95,37 @@ tagline: Stands for CSS Laws - Our CSS Guidelines
     });
 })(jQuery);</code></pre>
 
-<h2>dummy.js</h2>
-<p>Revealing Module Pattern</p>
+<h3>Revealing Module Pattern</h3>
 
-<pre class="line-numbers"><code class="language-js line-numbers">;var Module = (function(undefined) {
-    var privateVariable = '';
+<p>example from Addy Osmani's book <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript">Learning JavaScript Design Patterns</a></p>
+<pre class="line-numbers"><code class="language-js line-numbers">var myRevealingModule = (function () {
 
-    function privateMethod() {
-        console.log('did this');
+    var privateVar = "Ben Cherry",
+        publicVar = "Hey there!";
+
+    function privateFunction() {
+        console.log( "Name:" + privateVar );
     }
 
-    function exposedMethod() {
-        privateMethod();
+    function publicSetName( strName ) {
+        privateVar = strName;
     }
 
-    function anotherExposedMethod() {
-        console.log('did that');
+    function publicGetName() {
+        privateFunction();
     }
+
+
+    // Reveal public pointers to
+    // private functions and properties
 
     return {
-        publicMethod: exposedMethod,
-        otherPublicMethod: anotherExposedMethod
-    }
-</code>})();</pre>
+        setName: publicSetName,
+        greeting: publicVar,
+        getName: publicGetName
+    };
+
+})();
+
+myRevealingModule.setName( "Paul Kinlan" );
+</code></pre>
