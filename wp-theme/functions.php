@@ -19,7 +19,7 @@ if ( ! function_exists( 'guides_setup' ) ) {
 		/**
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Listable, use a find and replace
+		 * If you're building a theme based on Guides, use a find and replace
 		 * to change 'guides' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'guides', get_template_directory() . '/languages' );

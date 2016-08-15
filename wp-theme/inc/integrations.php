@@ -12,8 +12,15 @@
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/integrations/woocommerce.php';
 }
+
 /**
  * Load Customify compatibility file.
- * http://jetpack.me/
+ * http://pixelgrade.com/
  */
 require get_template_directory() . '/inc/integrations/customify.php';
+
+/**
+ * Load PixTypes compatibility file.
+ * http://pixelgrade.com/
+ */
+require get_template_directory() . '/inc/integrations/pixtypes.php';

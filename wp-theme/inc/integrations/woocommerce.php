@@ -1,6 +1,11 @@
 <?php
 /**
- * In this file we will put every function or hook which is needed to provide WooCommerce compatibility
+ * In this file we will put every function or hook which is needed to provide WooCommerce compatibility.
+ *
+ * Is preferable to use this file instead of overwriting WooCommerce template files. The plugin will always update
+ * template files and trigger the "Deprecated template" notice.
+ * Overwriting a functionality with a filter or an action is always the first choice
+ *
  */
 
 /**

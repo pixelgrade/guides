@@ -1,0 +1,7 @@
+<wpml-config>
+	<admin-texts>
+		<key name="guides_options">
+			<key name="footer_copyright" />
+		</key>
+	</admin-texts>
+</wpml-config>
