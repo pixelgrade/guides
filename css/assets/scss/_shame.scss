@@ -17,3 +17,8 @@ img {
 .gutter.gl {
 	padding-right: 20px;
 }
+
+// @andrei – any sub-list should be indent
+ol ul, ul ol {
+	margin-left: 20px;
+}

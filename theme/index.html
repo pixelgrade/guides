@@ -3,10 +3,7 @@ permalink: /wp-theme
 layout: default
 title: PixelGrade Theme Basis
 ---
-{{
-"
-
-These are the rules to follow while developing a new WordPress theme.
+{{ "These are the rules to follow while developing a new WordPress theme.
 
 ## The roots of our structure
 
@@ -24,7 +21,15 @@ Aside the rules from Codex we also need to check:
 * Also note that strings added to `sprintf` are XSS safe, and they can be output simply with `__` or `_e` functions.
 
 2. Always check what the [Theme Check Plugin](https://wordpress.org/plugins/theme-check) says.
+
 3. Always localize JavaScript strings or parameters needed (here is an [example](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L159-L179)).
+
+4. Every PHP function must be prefixed with the Theme Name like this: `guides_get_option`.
+
+5. PHP functions [naming](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/#naming-conventions) should also be completed by these 2 rules:
+   * Use `the_` prefix for functions which should display something like: 'guides_the_title.
+   * Use `get_` prefix for function which should return something like: `guides_get_custom_logo_ID`.
+   * Uppercase `ID` whenever you can.
 
 ## A Child Theme perspective
 * Every theme should have a child theme repository as an example following this [structure](http://pixelgrade.github.io/guides/child).
