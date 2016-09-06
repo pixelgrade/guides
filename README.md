@@ -1,4 +1,4 @@
-### Guides
+### Guides 
 
 The story is [here](http://pixelgrade.github.io/guides)
 
