@@ -1,6 +1,7 @@
 ---
 permalink: /pixplugin
 layout: default
+title: PixPlugin
 tagline: Our plugin skeleton
 ---
 {{
@@ -13,10 +14,18 @@ The time thought us that we cannot maintain too many plugins under the same core
 
 So we decide to switch to a skeleton simple enough to cover all our flexibility needs, but also a popular one to help us be transparent about or plans and features.
 
-The winner is http://wppb.io
+The winner is [wppb.io](http://wppb.io). Popular and simple to use.
 
-So currently we have some plugins on the new core:
-- KPIs dashboard.
+Our guides and rules are not beyond the WordPress ones:
+
+- For every feature you want to create always check if the WordPress core has a proposal for it.
+- Always think about using a [hook](https://codex.wordpress.org/Plugin_API/Hooks) before "hardcoding" a thing
+- Respect the WordPress Dashboard and treat it with [care](http://wordpress.tv/2016/07/01/caspar-hubinger-thoughts-on-wordpress-plugin-ui).
+
+Currently we have some plugins on the new core:
+
+- KPIs dashboard @TODO create the repository
+- ...
 
 And a list of plugins based on the old core (which definitely should be refactored)
 
@@ -25,6 +34,7 @@ And a list of plugins based on the old core (which definitely should be refactor
 - PixCodes
 - PixProof
 - PixFields
+- PixLikes
 
 " | markdownify
 }}
