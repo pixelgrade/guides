@@ -33,5 +33,5 @@ navigation:
   url: /guides/wp-theme
 - text: Child Theme
   url: /guides/child
-- text: Components
-  url: /guides/components
+- text: PixPlugin
+  url: /guides/pixplugin
