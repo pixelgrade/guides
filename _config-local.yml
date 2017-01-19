@@ -34,4 +34,6 @@ navigation:
 - text: Child Theme
   url: /child
 - text: PixPlugin
-  url: /pixplugin
+  url: /pixplugin/
+- text: ––– WP-API
+  url: /pixplugin/wp-api

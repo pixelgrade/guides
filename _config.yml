@@ -35,3 +35,5 @@ navigation:
   url: /guides/child
 - text: PixPlugin
   url: /guides/pixplugin
+- text: ––– WP-API
+  url: /guides/pixplugin/wp-api

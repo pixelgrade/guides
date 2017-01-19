@@ -1,0 +1,61 @@
+---
+permalink: /pixplugin/wp-api
+layout: default
+title: WordPress REST API Tips
+tagline: –––
+---
+{{
+"
+## Why?
+
+While developing our plugins we encounter the need of using the WordPress REST API more and more often, and we found that the new [V2 API](http://v2.wp-api.org/) can be an enjoyable API to use.
+
+If you ever used the **wp.ajax** JavaScript object or the WordPress **wp_ajax_** PHP filters you should give a serious try to the new REST API since it covers all the flexibility you need.
+
+## From where?
+
+We encourage you to read the full documentation of the [V2 API](http://v2.wp-api.org/) to have the minimal understanding of this system.
+
+The WordPress Codex also has a [handbook](https://developer.wordpress.org/rest-api/) about the REST API
+
+### The API Client
+
+As a client(aka the entity which gets data from the API), you can always implement your own way of requesting data from API.
+
+There are some recommendations based on the environment you want to use like:
+
+**Javascript**
+
+ * The [wp-api script](https://developer.wordpress.org/rest-api/using-the-rest-api/backbone-javascript-client/) –– a Backbone collection of all endpoints supported in this API by default
+ * There is also a [npm client](http://wp-api.org/node-wpapi/) client
+ * The old fashion `jQuery.ajax`(or maybe `fetch` if you feel modern) if you need a simply and very quick way of requesting a specific endpoint and process your response in a specific way
+
+**PHP**
+
+ * The first recommendation is the WordPress function `wp_remote_post`, learn this function well and make your own custom requests.
+ * There is a PHP client [exemple](https://github.com/WP-API/client-php) which you can use a starter.
+ * Another PHP client [exemple](https://github.com/WP-API/example-client) which has a full integration with the Oauth1
+
+### Custom endpoints
+
+If you want to create your own custom routes, you need to make use of the [rest_api_init](http://v2.wp-api.org/extending/adding/) action. The Handbook has an entire [chapter](https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/) about this.
+
+**The response callback**
+
+While creating your own callback, you need to be careful at returning value.
+
+It may be tempting to use the `wp_send_json_` since it is the standard way to end AJAX requests.But remember that this function ends in an `exit` statement so in this case, the API system will not have the chance to run any other actions after that.
+
+A better way to respond in callback is the function [rest_ensure_response](https://developer.wordpress.org/reference/functions/rest_ensure_response/)
+
+
+### Authentication
+
+For Admin dashboard features we recommend the use of the basic [nonce authentication](https://developer.wordpress.org/rest-api/using-the-rest-api/authentication) since it is simple to use.
+
+For external requests we recommend the [Oauth1](https://oauth1.wp-api.org/index.html) or the [broker authentication](https://apps.wp-api.org/spec/).
+
+### To be continued
+
+" | markdownify
+}}

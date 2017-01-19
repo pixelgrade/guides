@@ -15,23 +15,51 @@ Since we are working with WordPress we respect the environment, concepts and [co
 
 Aside the rules from Codex we also need to check:
 
-1. Every string must be output in an escaped way with [gettext](http://php.net/gettext) functions like `esc_html__` or `esc_html_e`
-* For these gettext functions always use the same string textdomain which is set [here](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L25) and use only strings (no variables or constants).
-* Never add HTML code inside the functions above, if you need to compose an HTML block with strings inside use `sprintf`.
-* Also note that strings added to `sprintf` are XSS safe, and they can be output simply with `__` or `_e` functions.
+**Simple Quotes First**
 
-2. Always check what the [Theme Check Plugin](https://wordpress.org/plugins/theme-check) says.
+The simple quotes `'` should always be your fist pick, excepting the case of HTML attributes. So:
 
-3. Always localize JavaScript strings or parameters needed (here is an [example](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L159-L179)).
+* A simple string in PHP shold be wrapped in single quotes `<?php echo 'a string'; ?>`.
+* Array keys should also use the single quotes `<?php echo $my_array['a_custom_key'];?>`
 
-4. Every PHP function must be prefixed with the Theme Name like this: `guides_get_option`.
+**HTML Escape**
 
-5. PHP functions [naming](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/#naming-conventions) should also be completed by these 2 rules:
-   * Use `the_` prefix for functions which should display something like: 'guides_the_title.
-   * Use `get_` prefix for function which should return something like: `guides_get_custom_logo_ID`.
-   * Uppercase `ID` whenever you can.
+Every string must be output in an escaped way with [gettext](http://php.net/gettext) functions like `esc_html__` or `esc_html_e`:
+
+ * For these gettext functions always use the same string textdomain which is set [here](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L25) and use only strings (no variables or constants).
+ * Never add HTML code inside the functions above, if you need to compose an HTML block with strings inside use `sprintf`.
+ * Also note that strings added to `sprintf` are XSS safe, and they can be output simply with `__` or `_e` functions.
+
+**Javascript parameters**
+
+Always localize JavaScript strings or parameters needed (here is an [example](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L159-L179)).
+
+**PHP funtion namming**
+
+Every PHP function must be prefixed with the Theme Name like this: `guides_get_option`.
+
+PHP functions [naming](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/#naming-conventions) should also be completed by these 2 rules:
+
+ * Use `the_` prefix for functions which should display something like: 'guides_the_title.
+ * Use `get_` prefix for function which should return something like: `guides_get_custom_logo_ID`.
+ * Uppercase `ID` whenever you can.
+
+**Final code check**
+
+Always check what the [Theme Check Plugin](https://wordpress.org/plugins/theme-check) says.
+
+### PHPStorm users
+
+PHPStorm has a code style predefined for PHP, you can set it up in Preferences panel as in the next screenshot.
+
+![Image description](/theme/code_style.png)
+
+Please note that this code style is available only for PHP files.
+
+For SCSS, CSS or JS files you will need to setup your own style and add Smart Tabs or a proper spacing to function parameters.
 
 ## A Child Theme perspective
+
 * Every theme should have a child theme repository as an example following this [structure](http://pixelgrade.github.io/guides/child).
 * For child themes to succeed we need to allow them control, so whenever we declare a function we check it with the `function_exists` function, in case it does exists it means it was created by a child theme.
 * Try to break down templates into smaller pieces as much as you can in order to be easier for child themes to [overwrite templates](http://pixelgrade.github.io/guides/child#template-overwriting).
@@ -45,5 +73,6 @@ Aside the rules from Codex we also need to check:
 * For Shortcodes management we use [PixCodes](https://github.com/pixelgrade/pixcodes)
 
 4. **We strive to keep things licensed under GPLv3. The sky is the limit.**
+
 " | markdownify
 }}
