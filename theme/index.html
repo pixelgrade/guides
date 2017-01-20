@@ -11,15 +11,15 @@ We follow the [Underscores structure](https://github.com/automattic/_s)(`_s`) si
 
 ## WordPress Coding Standards
 
-Since we are working with WordPress we respect the environment, concepts and [coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php).
+Since we are working with WordPress, we respect the environment, concepts and [coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php).
 
-Aside the rules from Codex we also need to check:
+Aside from the rules from Codex we also need to check:
 
 **Simple Quotes First**
 
 The simple quotes `'` should always be your fist pick, excepting the case of HTML attributes. So:
 
-* A simple string in PHP shold be wrapped in single quotes `<?php echo 'a string'; ?>`.
+* A simple string in PHP should be wrapped in single quotes `<?php echo 'a string'; ?>`.
 * Array keys should also use the single quotes `<?php echo $my_array['a_custom_key'];?>`
 
 **HTML Escape**
@@ -34,7 +34,7 @@ Every string must be output in an escaped way with [gettext](http://php.net/gett
 
 Always localize JavaScript strings or parameters needed (here is an [example](https://github.com/pixelgrade/guides/blob/master/wp-theme/functions.php#L159-L179)).
 
-**PHP function naming**
+<a name='php_function_naming'></a>**[PHP function naming](#php_function_naming)**
 
 Every PHP function must be prefixed with the **theme name** like this: `guides_get_option`.
 
@@ -43,6 +43,39 @@ PHP functions [naming](https://make.wordpress.org/core/handbook/best-practices/c
  * Use `the_` prefix for functions which should display something like: 'guides_the_title.
  * Use `get_` prefix for function which should return something like: `guides_get_custom_logo_ID`.
  * Uppercase `ID` whenever you can.
+
+<a name='actions_and_filters'></a>**[Actions and Filters](#actions_and_filters)**
+
+Since the use of actions and filters is a day by day job in themes and plugins, they turn out to be pretty important. Also how we organize them is a fact that requires attention, so:
+
+**1)** Avoid putting actions and filters directly in functions.php, try to find a file with context like `template-tags.php` or `extras.php`.
+
+**2)** If is a plugin based action, there is a folder `integrations`  exactly for this purpose.
+
+**3)** We recommend writing actions and filters like the following example
+
+" | markdownify
+}}
+
+{% highlight php startinline=true %}
+<?php
+/**
+ * Comment block. Explain here what this function does!
+ **/
+function my_custom_action ( $first_param, $second_param ) {
+
+   // do some custom work
+
+}
+add_action( 'init', 'my_custom_action', 10, 2 ); ?>
+{% endhighlight %}
+{{"
+
+You may ask yourself what it is so important about the example above, well:
+* First, it has an order, the function must be first and the add_action must exactly after the function.
+* The add_action call must always have the 3rd and 4th params, even if the priority is 10 by default, it is a best practice to be specified.
+* Don't forget to comment your function, give it a context and explain what it does.
+
 
 **Final code check**
 
