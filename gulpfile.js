@@ -35,7 +35,7 @@ gulp.task('watch', ['styles', 'watch:jekyll'], function() {
 
 // Runs Jekyll build
 gulp.task('watch:jekyll', function() {
-	var shellCommand = ' bundle exec jekyll serve --config _config.yml,_config-local.yml --watch';
+	var shellCommand = ' bundle exec jekyll serve --livereload --config _config.yml,_config-local.yml --watch';
 	return gulp.src('./')
 		.pipe(run(shellCommand))
 		.on('error', gutil.log);

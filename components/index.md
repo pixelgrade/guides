@@ -50,8 +50,8 @@ From  a theme's perspective, a component is something that helps but **it's not 
 
 **Action hooks are crucial** to making this relationship work. So throughout the theme's templates, a standardized set of `do_action`s should be present - skipping one of them should be done consciously. We will not detail them here as they are more then obvious in our [theme boilerplate]({{page.boilerplate}}):
 
-```php?start_inline=true
-get_header(); ?>
+```html+php
+<?php get_header(); ?>
 
 <?php
 /**
@@ -69,7 +69,7 @@ A second, crucial, behaviour to this symbiosis is **the location concept.** Thin
 
 **Each theme template (including partials) should begin by defining the location details:**
 
-```php?start_inline=true
+```php
 // Let the template parts know about our location
 $location = pixelgrade_set_location( 'page full-width' );
 ```
@@ -171,8 +171,21 @@ The `/templates` directory contains the component's partials.
 
 These are loaded via the `pxg_load_component_file( $component_slug, $slug, $name = '', $require_once = true )` function which ensures that a theme or a child theme can override them. The override logic is as following:
 
-- first it looks for `yourtheme/template-parts/component_slug/slug-name.php`, `yourtheme/component_slug/slug-name.php` and `yourtheme/components/component_slug/slug-name.php`, in this order;
-- then it looks for `yourtheme/template-parts/component_slug/slug.php`, `yourtheme/component_slug/slug.php` and `yourtheme/components/component_slug/slug.php`, in this order;
+- first it looks for, in this order:
+
+```text
+yourtheme/template-parts/component_slug/slug-name.php 
+yourtheme/component_slug/slug-name.php
+yourtheme/components/component_slug/slug-name.php
+```
+
+- then it looks for, in this order:
+
+```text
+yourtheme/template-parts/component_slug/slug.php
+yourtheme/component_slug/slug.php
+yourtheme/components/component_slug/slug.php
+```
 
 We use the `locate_template()` function which searches firstly in the child theme (if in use), then in the main theme. So we keep with the standard WordPress way of doing things.
 

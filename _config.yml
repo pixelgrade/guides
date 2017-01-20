@@ -10,12 +10,13 @@ github_username: pixelgrade
 
 # syntax highlighting
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
 
 # build settings
 latest_version: 1.3.2
+encoding: utf-8
 sass:
     style: compressed
 available_versions:
@@ -32,6 +33,8 @@ exclude:
     - script
     - spec
 gems:
+  - jekyll-seo-tag
+  - jekyll-redirect-from
   - jekyll-relative-links
   - jekyll-sitemap
 
