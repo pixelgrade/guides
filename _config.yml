@@ -1,9 +1,14 @@
+# global settings
 title: Guides by PixelGrade
 email: contact@pixelgrade.com
 description: '– – –'
-url: 'http://pixelgrade.github.io/guides/'
+url: 'https://pixelgrade.github.io/guides/'
+baseurl: '/guides'
+encoding: UTF-8
 twitter_username: pixelgrade
 github_username: pixelgrade
+
+# build settings
 latest_version: 1.3.2
 sass:
     style: compressed
@@ -20,6 +25,12 @@ exclude:
     - package.json
     - script
     - spec
+
+gems:
+  - jekyll-relative-links
+  - jekyll-sitemap
+
+# navigation
 navigation:
 - text: View on GitHub
   url: https://github.com/pixelgrade/guides
@@ -33,6 +44,8 @@ navigation:
   url: /guides/wp-theme
 - text: Child Theme
   url: /guides/child
+- text: Components
+  url: /guides/components
 - text: PixPlugin
   url: /guides/pixplugin
 - text: ––– WP-API
