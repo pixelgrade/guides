@@ -7,6 +7,14 @@ encoding: UTF-8
 twitter_username: pixelgrade
 github_username: pixelgrade
 latest_version: 1.3.2
+
+# syntax highlighting
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# build settings
 sass:
     style: compressed
 available_versions:
@@ -26,6 +34,7 @@ gems:
   - jekyll-relative-links
   - jekyll-sitemap
 
+# navigation
 navigation:
 - text: View on GitHub
   url: https://github.com/pixelgrade/guides

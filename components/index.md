@@ -50,7 +50,7 @@ From  a theme's perspective, a component is something that helps but **it's not 
 
 **Action hooks are crucial** to making this relationship work. So throughout the theme's templates, a standardized set of `do_action`s should be present - skipping one of them should be done consciously. We will not detail them here as they are more then obvious in our [theme boilerplate]({{page.boilerplate}}):
 
-```php
+```php?start_inline=true
 get_header(); ?>
 
 <?php
@@ -69,7 +69,7 @@ A second, crucial, behaviour to this symbiosis is **the location concept.** Thin
 
 **Each theme template (including partials) should begin by defining the location details:**
 
-```php
+```php?start_inline=true
 // Let the template parts know about our location
 $location = pixelgrade_set_location( 'page full-width' );
 ```
@@ -97,7 +97,7 @@ Finally, where do components spend their time? Well... in **the `/components` di
 
 **The main directory structure** would be like this:
 
-```
+```text
 /theme_directory
 	/assets
 	...
@@ -128,7 +128,7 @@ With a firm understanding on the way components interact with a theme, we can fo
 
 A component is built upon the same organizing and naming principles as a theme is:
 
-```
+```text
 /component-name
     /css
     /js

@@ -1,4 +1,7 @@
-source 'https://rubygems.org'
-gem 'github-pages', group: :jekyll_plugins
-gem 'jekyll-relative-links', group: :jekyll_plugins
-gem 'jekyll-sitemap', group: :jekyll_plugins
+source 'https://rubygems.org' do
+    gem 'github-pages'
+    gem 'jekyll-relative-links'
+    gem 'jekyll-sitemap'
+    gem 'kramdown'
+    gem 'rouge'
+end
