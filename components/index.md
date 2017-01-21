@@ -1,5 +1,5 @@
 ---
-permalink: /components
+permalink: /components/
 layout: markdown
 title: Theme Components Guide
 boilerplate: https://github.com/pixelgrade/boilerplate
@@ -146,20 +146,20 @@ Lets set some guidelines about these files and directories.
 
 The `class_component-name.php` file is **the main file of a component**, and it's **the only one required** (due to the fact that it's the only one loaded by the `power-up.php` general file). It holds the main class of the component (usually called `Pixelgrade_Component_Name`).
 
-The main component class deals primarily with :
+The main component class deals primarily with:
 
 - **hooking** everything the component requires;
 - **registering and enqueueing** static assets (both in the WP Admin and the frontend);
 - **providing configurations** (like the PixTypes or Customify ones);
 - other small bits of extras (think of it in terms of the `extras.php` theme file).
 
-If this class becomes too big (like way big) or too convoluted in its logic, than you can consider splitting it into various classes. In this case the `/inc` directory would make its appearance. But lets hope that we don't come to that - we might first need to consider if we've grown our component too big and we would be better off splitting the component instead.
+If this class becomes too big (like way big) or too convoluted in its logic, then you can consider splitting it into various classes. In this case the `/inc` directory would make its appearance. But lets hope that we don't come to that - we might first need to consider if we've grown our component too big and we would be better off splitting the component instead.
 
 The specific code details (like being a **singleton**) are available in the [boilerplate]({{page.boilerplate}}).
 
 ### The Template Tags
 
-The `template-tags.php` file holds the template functions used by this component throughout its templates. These should provide **a decent level of filters** so the theme can interact with the components behaviour.
+The `template-tags.php` file holds the template functions used by this component throughout its templates. These should provide **a decent level of filters** so the theme can interact with the component's behaviour.
 
 Also, they should all be **prefixed with `pixelgrade_component_name_`** and **should not be wrapped** by `if ( function_exists( ... ))` as we don't want others to overwrite the component's functionality in bulk. **They should use filters.**
 
@@ -218,3 +218,48 @@ gulp.task('styles-components', 'Compiles Sass and uses autoprefixer', function()
         .pipe(gulp.dest('./components'));
 });
 ```
+
+## Code Styling
+
+Obviously, we follow all the standard WordPress code styling:
+- [PHP Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/)
+- [CSS Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/css/)
+- [HTML Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/html/)
+- [JavaScript Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/javascript/)
+
+In addition there are some further details that we should know so we can keep on creating happy components.
+
+### File Headers
+
+Each .php file should start with a header like the following:
+
+```php
+<?php
+/**
+ * The main template for header
+ *
+ * This template can be overridden by copying it to a child theme in /components/header/templates/header.php
+ *
+ * HOWEVER, on occasion Pixelgrade will need to update template files and you
+ * will need to copy the new files to your child theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see        https://pixelgrade.com
+ * @author     Pixelgrade
+ * @package    Components/Header
+ * @version    1.0.1
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+?>
+```
+
+This provides information about what the file represents (the first line), how to override it and a disclaimer about how to treat this file in future updates.
+
+The rest of the lines are standard and they provide the link to us, our name, the package name and the current version of this file. 
+
+**You should always increase this version when making changes to a file.** This will make it easier for everybody to keep all of our themes up-to-date.
