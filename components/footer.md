@@ -8,14 +8,57 @@ This is the guide for the **Pixelgrade Footer** component. We will tackle both b
 
 ## What Does It Do?
 
+This is quite a straight forward component. It will handle the **markup, Customizer options and widgets** of the `<footer>` section of the `<body>`.
 
+The footer contains the widget area and the copyright text controlled through the Customizer.
 
 ## What It Doesn't Do?
+
+It doesn't handle the final part of the `<body>` like the call to `wp_footer()` or the closing `</body>`. That is best left to the theme.
 
 
 ## How It Works?
 
+It registers a widget area (sidebar) called 'Footer Area' and outputs the markup of those widgets.
 
+Using the `pixelgrade_footer` action hook it outputs the markup found in the component's `templates/footer.php` file (this is hooked in `Pixelgrade_Footer->register_hooks()`).
+
+So for this component to work, the theme must provide the following hook (usually found in the theme's `footer.php` file):
+
+```php
+<?php
+/**
+ * pixelgrade_before_footer hook.
+ *
+ * @hooked nothing() - 10 (outputs nothing)
+ */
+do_action( 'pixelgrade_before_footer', 'main' );
+?>
+
+<?php
+/**
+ * pixelgrade_footer hook.
+ *
+ * @hooked pixelgrade_the_footer() - 10 (outputs the footer markup)
+ */
+do_action( 'pixelgrade_footer', 'main' );
+?>
+
+<?php
+/**
+ * pixelgrade_after_footer hook.
+ *
+ * @hooked nothing() - 10 (outputs nothing)
+ */
+do_action( 'pixelgrade_after_footer', 'main' );
+    ?>
+```
+
+We only need the middle hook (`pixelgrade_footer`), but we **strongly recommend** keeping all three as it allows for others to be able to reliably relate to the footer component and add things around it.
+
+This component **doesn't have any static assets of its own** (like .css or .js), but it does have in its `/scss` folder **the necessary frontend logic for handling layout**. So you should include `/components/footer/scss/_main.scss` this in your theme's SCSS and add your styling.
+
+The widgets in the footer are laid out in columns.
 
 ## Important Technical Details
 
