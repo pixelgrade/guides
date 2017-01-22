@@ -52,6 +52,16 @@ navigation:
   url: /child
 - text: Components
   url: /components
+- text: ––– Header
+  url: /components/header
+- text: ––– Footer
+  url: /components/footer
+- text: ––– Hero
+  url: /components/hero
+- text: ––– Featured Image
+  url: /components/featured-image
+- text: ––– Gallery
+  url: /components/gallery
 - text: PixPlugin
   url: /pixplugin/
 - text: ––– WP-API
