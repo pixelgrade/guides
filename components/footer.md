@@ -51,7 +51,7 @@ do_action( 'pixelgrade_footer', 'main' );
  * @hooked nothing() - 10 (outputs nothing)
  */
 do_action( 'pixelgrade_after_footer', 'main' );
-    ?>
+?>
 ```
 
 We only need the middle hook (`pixelgrade_footer`), but we **strongly recommend** keeping all three as it allows for others to be able to reliably relate to the footer component and add things around it.
