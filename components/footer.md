@@ -58,7 +58,7 @@ We only need the middle hook (`pixelgrade_footer`), but we **strongly recommend*
 
 This component **doesn't have any static assets of its own** (like .css or .js), but it does have in its `/scss` folder **the necessary frontend logic for handling layout**. So you should include `/components/footer/scss/_main.scss` this in your theme's SCSS and add your styling.
 
-The widgets in the footer are laid out in columns.
+The widgets in the footer are **laid out in columns.**
 
 ## Important Technical Details
 
