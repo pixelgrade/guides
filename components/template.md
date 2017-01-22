@@ -14,6 +14,8 @@ This is the guide for the **Pixelgrade Header** component. We will tackle both b
 
 ## Important Technical Details
 
+All **customizations done by a theme to a component** should reside in the `/inc/components.php` file, regardless if there are dedicated files for certain integrations (Customify comes to mind). This ensures that one can identify quickly the way a theme interacts with components.
+
 ### Customizing the Customify Settings
 
 The component provides its standard Customizer options by registering them through our wonderful [Customify](https://wordpress.org/plugins/customify/) WordPress plugin. 

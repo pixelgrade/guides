@@ -8,11 +8,18 @@ This is the guide for the **Pixelgrade Footer** component. We will tackle both b
 
 ## What Does It Do?
 
+
+
 ## What It Doesn't Do?
+
 
 ## How It Works?
 
+
+
 ## Important Technical Details
+
+All **customizations done by a theme to a component** should reside in the `/inc/components.php` file, regardless if there are dedicated files for certain integrations (Customify comes to mind). This ensures that one can identify quickly the way a theme interacts with components.
 
 ### Customizing the Customify Settings
 
@@ -34,36 +41,36 @@ Here is some example code to get you started in the right direction:
  */
 function osteria_change_customify_footer_section_options( $options = array() ){
     // just add some option at the end
-    $options['header_section']['options']['header_transparent_header'] = array(
+    $options['footer_section']['options']['footer_hide_back_to_top_link'] = array(
         'type'    => 'checkbox',
-        'label'   => esc_html__( 'Transparent Header while on Hero', 'components' ),
+        'label'   => esc_html__( 'Hide "Back To Top" Link', 'components' ),
         'default' => 1,
     );
 
     // or you could add some option after another
-    $header_transparent_option = array(
-        'header_transparent' => array(
+    $footer_hide_back_to_top = array(
+        'footer_hide_back_to_top_link' => array(
             'type'    => 'checkbox',
-            'label'   => esc_html__( 'Transparent Header while on Hero', 'components' ),
+            'label'   => esc_html__( 'Hide "Back To Top" Link', 'components' ),
             'default' => 1,
         )
     );
-    $options['header_section']['options'] = pixelgrade_array_insert_after( $options['header_section']['options'], 'header_sides_spacing', $header_transparent_option );
+    $options['footer_section']['options'] = pixelgrade_array_insert_after( $options['footer_section']['options'], 'footer_bottom_spacing', $footer_hide_back_to_top );
 
     // delete some option
-    if( array_key_exists( 'header_background', $options['header_section']['options'] ) ) {
-        unset( $options['header_section']['options']['header_background'] );
+    if( array_key_exists( 'footer_bottom_spacing', $options['footer_section']['options'] ) ) {
+        unset( $options['footer_section']['options']['footer_bottom_spacing'] );
     }
 
     // change some settings for a specific option
     // First we test to see if we have this option
-    if( array_key_exists( 'header_background', $options['header_section']['options'] ) ) {
-        $options['header_section']['options']['header_background']['default'] = '#555555';
+    if( array_key_exists( 'footer_bottom_spacing', $options['footer_section']['options'] ) ) {
+        $options['footer_section']['options']['footer_bottom_spacing']['default'] = 10;
     }
 
     // or just replace the whole array
-    $options['header_section'] = array(
-        'title'   => __( 'Header', 'components' ),
+    $options['footer_section'] = array(
+        'title'   => esc_html__( 'Footer', 'components' ),
         'options' => array(
                 //put your options here
         )
