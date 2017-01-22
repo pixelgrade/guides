@@ -1,10 +1,10 @@
 ---
-permalink: /components/template
+permalink: /components/footer
 layout: markdown
-title: Header Component Guide
+title: Footer Component Guide
 boilerplate: https://github.com/pixelgrade/boilerplate
 ---
-This is the guide for the **Pixelgrade Header** component. We will tackle both behaviour and technical details.
+This is the guide for the **Pixelgrade Footer** component. We will tackle both behaviour and technical details.
 
 ## What Does It Do?
 
@@ -20,53 +20,19 @@ The component provides its standard Customizer options by registering them throu
 
 Although well thought, you might find the need to add, delete, or 😱  completely replace options (although you would be quite the schmuck for doing this 💩). 
 
-Luckily, the component allows you to **filter the header options** just before they are merged with the main Customify options via the `pixelgrade_header_customify_section_options` (see bellow).
-
-Also you can **filter the recommended fonts** for all typography controls in one fel swoop via the `pixelgrade_header_customify_recommended_headings_fonts` filter (see bellow).
+Luckily, the component allows you to **filter the footer options** just before they are merged with the main Customify options via the `pixelgrade_footer_customify_section_options` (see bellow).
 
 Here is some example code to get you started in the right direction:
 
 ```php
-// To change the recommended fonts you can use the following
-
 /**
- * Modify the Customify recommended fonts for the Header font controls.
- *
- * @param array $fonts
- *
- * @return array
- */
-function osteria_change_customify_header_recommended_fonts( $fonts = array() ){
-    // just add some font to the existing list
-    $fonts[] = 'Some Font Family';
-
-    // delete a certain font family
-    if( ( $key = array_search( 'NiceFont', $fonts ) ) !== false) {
-        unset( $fonts[ $key ] );
-    }
-
-    // or just replace the whole array
-    $fonts = array(
-        'Playfair Display',
-        'Oswald',
-        'Lato',
-    );
-
-    // Now return our modified fonts list
-    return $fonts;
-}
-add_filter( 'pixelgrade_header_customify_recommended_headings_fonts', 'osteria_change_customify_header_recommended_fonts');
-
-// To change some options
-
-/**
- * Modify the Customify Header section options.
+ * Modify the Customify Footer section options.
  *
  * @param array $options
  *
  * @return array
  */
-function osteria_change_customify_header_section_options( $options = array() ){
+function osteria_change_customify_footer_section_options( $options = array() ){
     // just add some option at the end
     $options['header_section']['options']['header_transparent_header'] = array(
         'type'    => 'checkbox',
@@ -106,7 +72,7 @@ function osteria_change_customify_header_section_options( $options = array() ){
     // Now return our modified options
     return $options;
 }
-add_filter( 'pixelgrade_header_customify_section_options', 'osteria_change_customify_header_section_options');
+add_filter( 'pixelgrade_footer_customify_section_options', 'osteria_change_customify_footer_section_options');
 ```
 
 Please remember, code like the one above should go into `/inc/components.php` in your theme.
