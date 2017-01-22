@@ -20,9 +20,9 @@ Basically it does pretty much everything there is about heroes, except for the s
 
 ## How It Works?
 
-Using the `pixelgrade_before_entry_title` action hook it outputs the markup of the hero(this is hooked in `Pixelgrade_Header->register_hooks()`). The component has two template files: a `hero.php` for regular heroes, and a `hero-map.php` for heroes with Google Maps. It will automatically load the appropiate one depending on the page template being used.
+Using the `pixelgrade_before_entry_title` action hook it outputs the markup of the hero(this is hooked in `Pixelgrade_Header->register_hooks()`). The component has two template files: a `hero.php` for regular heroes, and a `hero-map.php` for heroes with Google Maps. It will automatically load the appropriate one depending on the page template being used.
 
-So for this component to work, the theme must provide the following hook (usually found in a theme partial like `content-page.php`):
+So for this component to work, the **theme must provide the following hook** (usually found in a theme partial like `content-page.php`):
 
 ```php
 <?php
@@ -35,13 +35,13 @@ do_action( 'pixelgrade_before_entry_title', $location );
 ?>
 ```
 
-One more important thing about the location of this hook: the component's markup is devised to be inserted in an `<article>` inside the `<header>`. This way we keep things semanthic and consistent with other behaviours like multipages.
+One more **important thing about the location of this hook:** the component's markup is devised to be inserted in an `<article>` inside the `<header>`. This way we keep things semanthic and consistent with other behaviours like multipages.
 
 The Hero component provides its own **.scss layout logic** that should be included in your theme's scss, located at `/components/hero/scss/_main.scss`.
 
-Throughout the component's templates and template tags functions you will find numerous action hooks and filters that will allow you to either insert markup or change its behaviour. You should inspect the code for more details.
+Throughout the component's templates and template tags functions you will find **numerous action hooks and filters** that will allow you to either insert markup or change its behaviour. You should inspect the code for more details.
 
-Also please note that the component provides plenty of template tags should you decide to create your own hero templates. Just check out `/components/hero/template-tags.php`.
+Also please note that the component provides **plenty of template tags** should you decide to create your own hero templates. Just check out `/components/hero/template-tags.php`.
 
 ## Important Technical Details
 
