@@ -47,6 +47,34 @@ Also please note that the component provides **plenty of template tags** should 
 
 All **customizations done by a theme to a component** should reside in the `/inc/components.php` file, regardless if there are dedicated files for certain integrations (Customify comes to mind). This ensures that one can identify quickly the way a theme interacts with components.
 
+### Add The Scroll Down Arrow
+
+You might want to make life easier for your users (and not listen to the haters who talk about bad design) and provide a scroll down arrow when conditions are just right. You can use this code as a starting place:
+
+```php
+/**
+ * Adds the scroll down arrow after the hero content when it's needed - when it's a full-screen hero
+ *
+ * @param array|string $location
+ * @param int $post_id
+ */
+function osteria_the_hero_scroll_down_arrow( $location, $post_id ) {
+	// Only show the scroll down arrow for full-height heroes
+	$show = false;
+	if ( 'c-hero--full' == pixelgrade_hero_get_height( $location, $post_id ) ) {
+		$show = true;
+	}
+
+	// Allow others to have a say in it - like the multipage component
+	$show = apply_filters( 'pixelgrade_hero_show_scroll_down_arrow', $show, $location, $post_id );
+
+	if ( true === $show ) {
+		get_template_part( 'template-parts/svg/scroll-down-arrow' );
+	}
+}
+add_action( 'pixelgrade_hero_after_content', 'osteria_the_hero_scroll_down_arrow', 20, 2  );
+```
+
 ### Customizing the PixTypes Settings
 
 The component provides its custom metaboxes through our lovely [PixTypes](https://wordpress.org/plugins/pixtypes/) WordPress plugin.

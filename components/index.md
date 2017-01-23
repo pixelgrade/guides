@@ -222,6 +222,7 @@ gulp.task('styles-components', 'Compiles Sass and uses autoprefixer', function()
 ## Code Styling
 
 Obviously, we follow all the standard WordPress code styling:
+
 - [PHP Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/)
 - [CSS Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/css/)
 - [HTML Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/html/)

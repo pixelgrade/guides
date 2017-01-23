@@ -70,7 +70,7 @@ The component provides its standard Customizer options by registering them throu
 
 Although well thought, you might find the need to add, delete, or 😱  completely replace options (although you would be quite the schmuck for doing this 💩). 
 
-Luckily, the component allows you to **filter the footer options** just before they are merged with the main Customify options via the `pixelgrade_footer_customify_section_options` (see bellow).
+Luckily, the component allows you to **filter the footer options** just before they are merged with the main Customify options via the `pixelgrade_footer_customify_section_options` filter (see bellow).
 
 Here is some example code to get you started in the right direction:
 

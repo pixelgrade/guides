@@ -22,7 +22,7 @@ The component provides its standard Customizer options by registering them throu
 
 Although well thought, you might find the need to add, delete, or 😱  completely replace options (although you would be quite the schmuck for doing this 💩). 
 
-Luckily, the component allows you to **filter the header options** just before they are merged with the main Customify options via the `pixelgrade_header_customify_section_options` (see bellow).
+Luckily, the component allows you to **filter the header options** just before they are merged with the main Customify options via the `pixelgrade_header_customify_section_options` filter (see bellow).
 
 Also you can **filter the recommended fonts** for all typography controls in one fel swoop via the `pixelgrade_header_customify_recommended_headings_fonts` filter (see bellow).
 
