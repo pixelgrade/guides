@@ -28,7 +28,7 @@ It will **not add JavaScript** to make the masonry work on the frontend, that is
 
 One simply uses the `[gallery]` shortcode and its options as usual. The component will automatically add classes to the gallery `<div>` so you can target it in your styling.
 
-For the spacing option, it will add a class like `u-gallery-spacing--small`, and for the masonry type it will add the class `gallery--type-masonry`.
+For the spacing option, it will add a class like `u-gallery-spacing--small`, and for the masonry type it will add the class `u-gallery-type--masonry`.
 
 In case Jetpack is not active, then we will also add the `u-gallery-type--slideshow` class to the gallery div.
 
