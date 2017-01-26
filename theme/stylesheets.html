@@ -130,15 +130,16 @@ tagline: ''
 		</li>
 	</ul>
 
-	<h3>Single declarations</h3>
+	<h3 id="sub-chapter-single-declarations">Single declarations</h3>
 	<p>In instances where a rule set includes only one declaration, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines.
 	<pre><code class="language-css">.selector { display: block; }</code></pre></p>
 	<p>The key factor here is error detection—e.g., a CSS validator stating you have a syntax error on Line 183. With a single declaration, there's no missing it. With multiple declarations, separate lines is a must for your sanity.</p>
 
-	<h3>Declaration order</h3>
+	<h3 id="sub-chapter-declaration-order">Declaration order</h3>
 	<p>We group by type within that scope we toggle between arbitrary order and order by line length. Types are ordered by their importance, from loose to more specific properties.</p>
 
 	<ul>
+		<li>Extends</li>
 		<li>Positioning - position, top, right, bottom, left, z-index</li>
 		<li>Display, flex properties, and box model</li>
 		<li>Border and other of its properties(style, width, color)</li>
@@ -148,6 +149,9 @@ tagline: ''
 	</ul>
 
 	<pre><code class="language-css">.element {
+    @extend %font-size-16;
+    @extend %clearfix;
+
     position: absolute;
     top: 0;
     bottom: 0;
@@ -158,7 +162,7 @@ tagline: ''
     display: flex;
     flex: 1 1 auto;
     height: auto;
-    width: 100%;
+    @import width-full(); /* width: 100%; */
 
     border: 1px solid #fff;
     border-radius: 5px;
@@ -180,7 +184,7 @@ tagline: ''
 	<p>@todo we should have a reference to a .csscomb.json file and explain the reasoning behind it</p>
 	<a href="https://github.com/pixelgrade/components/blob/master/.csscomb.json">https://github.com/pixelgrade/components/blob/master/.csscomb.json</a>
 
-	<h3>Shorthand notation</h3>
+	<h3 id="sub-chapter-shorthand-notation">Shorthand notation</h3>
 	<p>@todo maybe use the precss postcss plugin that allows you to write things like margin: * auto; to avoid accidentally overwriting unnecessary values.</p>
 	<p>Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. Common overused shorthand properties include:</p>
 	<ul>
@@ -421,7 +425,7 @@ Hive is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, I
 <hr />
 
 <footer>
-	<h4>Tot felul de referinte:</h4>
+	<h4>References: </h4>
 
 	<ul>
 		<li><a href="http://cssguidelin.es/">http://cssguidelin.es/</a></li>
