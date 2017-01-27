@@ -75,6 +75,8 @@ function osteria_the_hero_scroll_down_arrow( $location, $post_id ) {
 add_action( 'pixelgrade_hero_after_content', 'osteria_the_hero_scroll_down_arrow', 20, 2  );
 ```
 
+Please note, that **it is important that you keep that filter** in place and with the same name so we have a standard way of allowing others to intervene and **prevent the scroll down arrow from appearing.** The Multipage component is the first that comes to mind since it needs to prevent the scroll down arrow from appearing in the heroes of subpages.
+
 ### Customizing the PixTypes Settings
 
 The component provides its custom metaboxes through our lovely [PixTypes](https://wordpress.org/plugins/pixtypes/) WordPress plugin.

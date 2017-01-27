@@ -62,6 +62,10 @@ navigation:
   url: /components/featured-image
 - text: ––– Gallery
   url: /components/gallery
+- text: ––– Multipage
+  url: /components/multipage
+- text: ––– Nova Menu
+  url: /components/nova-menu
 - text: PixPlugin
   url: /pixplugin/
 - text: ––– WP-API
