@@ -70,3 +70,7 @@ navigation:
   url: /pixplugin/
 - text: ––– WP-API
   url: /pixplugin/wp-api
+- text: Tests
+  url: /tests
+- text: ––– Unit Testing
+  url: /tests/unit-testing
