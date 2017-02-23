@@ -72,3 +72,7 @@ navigation:
   url: /guides/pixplugin
 - text: ––– WP-API
   url: /guides/pixplugin/wp-api
+- text: Tests
+  url: /guides/tests
+- text: ––– Unit Testing
+  url: /guides/tests/unit-testing
