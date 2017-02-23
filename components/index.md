@@ -12,13 +12,13 @@ First, before diving into the the technical aspects, let's clarify **the thinkin
 
 The need arose from the fact that, as we've started to increase our theme portfolio, the effort needed to maintain them naturally increased. This **wasn't going to be sustainable** in the long term.
 
-A second nagging, recurring issue is the fact that often we've fixed a bug in one theme only to fail to fix it in all the other similar themes. Improvements followed the same logic. This lead to **frustrations among us and among our customers**.
+A second, nagging, recurring issue is the fact that often we've fixed a bug in one theme only to fail to fix it in all the other similar themes. Improvements followed the same logic. This lead to **frustrations among us and among our customers**.
 
-Thirdly, certain patterns began to firmly take shape. Some areas of similar themes began to have the same logic and behaviour (both due to widely used web patterns, but also to make it easy for customers to transition between our themes). We should be able to **reuse and improve these areas in one fell sweep**.
+Thirdly, **certain patterns** began to firmly take shape. Some areas of similar themes began to have the same logic and behaviour (both due to widely used web patterns, but also to make it easy for customers to transition between our themes). We should be able to **reuse and improve these areas in one fell sweep**.
 
 So, something needed to change. We needed to be able to have the flexibility of implementing whatever design was presented in front of us, but at the same time **share as much code as possible between as many themes**.
 
-The obvious danger in such an undertaking is "bending" the design to certain predefined blocks, and in no time have our portfolio lose it's diversity and appeal. We won't allow for that.
+The obvious danger in such an undertaking is "bending" the design to certain predefined blocks, and, in no time, have our portfolio lose it's diversity and appeal. **We won't allow for that.**
 
 ## Is Everything a Component?
 
@@ -75,7 +75,7 @@ $location = pixelgrade_set_location( 'page full-width' );
 ```
 This is a top level template (like `page.php`) that **sets** the first location. You can use strings (space or comma separated for multiple values) or arrays - we will standardize them to arrays either way.
 
-Subsequent template parts (like `content.php`) should get the already set location, provide a fallback default if that is the case, add to it:
+Subsequent template parts (like `content.php`) should get the already set location, provide a fallback default if that is the case or add to it (put their own stamp):
 
 ```php
 // We first need to know the bigger picture - the location this template part was loaded from
@@ -87,9 +87,9 @@ $location = pixelgrade_get_location( 'page' );
 $location = pixelgrade_set_location( 'map', true );
 ```
 
-Now **what do we do with this location**, and its stamps? We pass them to the template tags and action hooks! What did you think we would? This way a component or some logic in our theme could behave accordingly - information is power.
+Now **what do we do with this location**, and its stamps? We pass them to the template tags and action hooks! What did you think we would? This way a component or some logic in our theme could behave accordingly - **information is power.**
 
-As you feverishly focused on the code snippets above, you've surely noticed some template tags like `pixelgrade_get_location` or `pixelgrade_set_location`. These are **our components template tags.**
+As you've feverishly focused on the code snippets above, you've surely noticed some template tags like `pixelgrade_get_location` or `pixelgrade_set_location`. These are **our component template tags.**
 
 So, besides each individual component, we have a set of **helper template tags** that are used by all, including the theme. Due to this reason, **the `components/pixelgrade_template-tags.php` file should not be missing from any theme.** It would be a shame if we couldn't use those lovely standardized theme templates when we don't have any components, right?
 
@@ -124,9 +124,9 @@ We have each component in its own directory and a series of .php files:
 
 ## The Structure Of a Component
 
-With a firm understanding on the way components interact with a theme, we can focus on understanding how a component is structured and how to best take advantage of that.
+With a firm understanding on the way components interact with a theme, we can focus on **understanding how a component is structured** and how to best take advantage of that.
 
-A component is built upon the same organizing and naming principles as a theme is:
+A component is built upon **the same organizing and naming principles as a theme** is:
 
 ```text
 /component-name
@@ -189,7 +189,7 @@ yourtheme/components/component_slug/slug.php
 
 We use the `locate_template()` function which searches firstly in the child theme (if in use), then in the main theme. So we keep with the standard WordPress way of doing things.
 
-**Please note** that the `pxg_load_component_file()` function has a `$require_once` parameter that is true by default; this is because we are using this function to also load the rest of the files in the component. For partials, **we should always set this parameter to `false`.**
+**Please note** that the `pxg_load_component_file()` function has a `$require_once` parameter that is **true by default**; this is because we are using this function to also load the rest of the files in the component. For partials, **we should always set this parameter to `false`.**
 
 ### The SCSS
 
@@ -228,7 +228,7 @@ Obviously, we follow all the standard WordPress code styling:
 - [HTML Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/html/)
 - [JavaScript Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/javascript/)
 
-In addition there are some further details that we should know so we can keep on creating happy components.
+In addition there are some further details that we should know so we can keep on **creating happy components.**
 
 ### File Headers
 
@@ -264,3 +264,15 @@ This provides information about what the file represents (the first line), how t
 The rest of the lines are standard and they provide the link to us, our name, the package name and the current version of this file. 
 
 **You should always increase this version when making changes to a file.** This will make it easier for everybody to keep all of our themes up-to-date.
+
+### Components Versioning
+
+Speaking of versions, lets set some **clear rules for how we handle versions**:
+ 
+- We use [semantic versioning](http://semver.org/) the simple way, meaning without all the alpha, or release additions; just **MAJOR.MINOR.PATCH**;
+- Each component has **it's own version** that resides in its **main file** and we put the version both in the class variable and in the file header (because the file has changed);
+- The component's version increases whenever there is a change or addition in one of it's files;
+- **Each component file** (including the main file) has a version in its header; we will increase this version whenever we make a change or addition;
+- Each new component file version starts at version 1.0.0;
+
+Following these rules, it is not uncommon to have lets say a component at version 1.2.3 and one of its files (not the main file because that will be also at 1.2.3) at version 1.0.0, 1.2.0, but **no more than 1.2.3.**

@@ -12,7 +12,7 @@ It is a very straight forward component: it **activates support for Jetpack Food
 
 ## What It Doesn't Do?
 
-This is a functional component meaning it will provide theme sections like a hero or footer does.
+This is a functional component meaning it will NOT provide theme sections like a hero or footer does.
 
 It doesn't hold any template parts, WP admin or frontend CSS or JS. Just the functional code and SCSS to include in the theme's SCSS.
 

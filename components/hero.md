@@ -8,9 +8,9 @@ This is the guide for the **Pixelgrade Hero** component. We will tackle both beh
 
 ## What Does It Do?
 
-The Hero component is a real beauty. It will both the backend and frontend logic of a theme's heroes. 
+The Hero component is a real beauty. It will handle both the backend and frontend logic of a theme's heroes. 
 
-It will provide **the editor metaboxes** to allow you to control the hero content, its alignment, height and son on.
+It will provide **the editor metaboxes** to allow you to control the hero content, its alignment, height and so on.
 
 At the same time will output **a standardized hero markup** via the component's templates, slideshow and maps support included.
 
@@ -20,7 +20,7 @@ Basically it does pretty much everything there is about heroes, except for the s
 
 ## How It Works?
 
-Using the `pixelgrade_before_entry_title` action hook it outputs the markup of the hero(this is hooked in `Pixelgrade_Header->register_hooks()`). The component has two template files: a `hero.php` for regular heroes, and a `hero-map.php` for heroes with Google Maps. It will automatically load the appropriate one depending on the page template being used.
+Using the `pixelgrade_before_entry_title` action hook it outputs the markup of the hero (this is hooked in `Pixelgrade_Header->register_hooks()`). The component has two template files: a `hero.php` for regular heroes, and a `hero-map.php` for heroes with Google Maps. It will automatically load the appropriate one depending on the page template being used.
 
 So for this component to work, the **theme must provide the following hook** (usually found in a theme partial like `content-page.php`):
 
@@ -35,7 +35,7 @@ do_action( 'pixelgrade_before_entry_title', $location );
 ?>
 ```
 
-One more **important thing about the location of this hook:** the component's markup is devised to be inserted in an `<article>` inside the `<header>`. This way we keep things semanthic and consistent with other behaviours like multipages.
+One more **important thing about the location of this hook:** the component's markup is devised to be inserted in an `<article>` inside the `<header>`. This way we keep things semantic and consistent with other behaviours like multipages.
 
 The Hero component provides its own **.scss layout logic** that should be included in your theme's scss, located at `/components/hero/scss/_main.scss`.
 
